@@ -1,0 +1,14 @@
+\textbf{Euclidiana (2D/3D).}
+\[
+d_{2D} = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}, \quad
+d_{3D} = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}
+\]
+\textbf{Manhattan:}\;
+\(d = |x_1-x_2| + |y_1-y_2|\), \quad
+\textbf{Chebyshev:}\;
+\(d = \max(|x_1-x_2|, |y_1-y_2|)\).
+\[
+\vec{a}\cdot\vec{b}=x_1x_2+y_1y_2,\qquad
+\vec{a}\times\vec{b}=x_1y_2-x_2y_1
+\]
+\textbf{Parámetros:} \texttt{a}, \texttt{b} son puntos/vectores como tuplas \texttt{(x, y)}. \textit{¿Para qué sirven?} \texttt{dot} (producto punto) sirve para proyecciones y para saber el ángulo entre vectores (positivo = ángulo agudo). \texttt{cross} (producto cruz 2D) da un escalar cuyo signo indica el giro y cuya magnitud es el área del paralelogramo formado por \texttt{a} y \texttt{b}.

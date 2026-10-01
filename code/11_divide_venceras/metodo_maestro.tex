@@ -1,0 +1,14 @@
+Resuelve recurrencias de la forma \( T(n) = a \cdot T(n/b) + O(n^d) \), donde:
+
+\begin{itemize}
+  \item \(a\): número de subproblemas,
+  \item \(b\): factor de reducción por subproblema,
+  \item \(d\): complejidad del trabajo fuera de la recursión.
+\end{itemize}
+
+Casos:
+\begin{itemize}
+  \item Si \(a < b^d \Rightarrow T(n) = \Theta(n^d)\)
+  \item Si \(a = b^d \Rightarrow T(n) = \Theta(n^d \log n)\)
+  \item Si \(a > b^d \Rightarrow T(n) = \Theta(n^{\log_b a})\)
+\end{itemize}

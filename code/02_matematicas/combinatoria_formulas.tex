@@ -1,0 +1,28 @@
+\paragraph{Combinaciones (sin repetición).}
+\[
+\binom{n}{k} = \frac{n!}{k!(n-k)!}
+\]
+
+\paragraph{Combinaciones con repetición (multiconjuntos).}
+\textit{¿Cuándo usar?} Elegir \(k\) elementos de \(n\) tipos, pudiendo repetir tipos y sin importar el orden (ej.: escoger 5 frutas de 3 tipos disponibles, repitiendo tipos).
+\[
+\left(\!\!\binom{n}{k}\!\!\right) = \binom{n+k-1}{k}
+\]
+
+\paragraph{Estrellas y Barras (soluciones de \(x_1+\cdots+x_m=S\), \(x_i\ge 0\)).}
+\textit{¿Cuándo usar?} Contar de cuántas formas se reparte una cantidad \(S\) (indistinguible) entre \(m\) "cajas" (variables) enteras no negativas. \textbf{Parámetros:} \(S\) = total a repartir, \(m\) = número de variables/cajas.
+\[
+\# = \binom{S+m-1}{m-1}
+\]
+
+\paragraph{Permutaciones.}
+\[
+P(n,k)=\frac{n!}{(n-k)!}, \qquad P(n)=n!, \qquad
+\text{(con repetición)}\quad \frac{n!}{n_1!\cdots n_r!}
+\]
+
+\paragraph{Números de Catalan.}
+\textit{¿Cuándo usar?} Cuentan secuencias de paréntesis balanceados, formas de triangular un polígono, árboles binarios distintos con \(n\) nodos, caminos que no cruzan la diagonal, etc. \textbf{Parámetros:} \(n\) = tamaño del problema (ej. cantidad de pares de paréntesis).
+\[
+C_n=\frac{1}{n+1}\binom{2n}{n}
+\]

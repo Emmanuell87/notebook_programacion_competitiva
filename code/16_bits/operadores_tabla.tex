@@ -1,0 +1,16 @@
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Operador} & \textbf{Nombre} & \textbf{Qué hace} \\
+\hline
+\texttt{\&} & AND & 1 solo si ambos bits son 1 \\
+\texttt{|} & OR & 1 si al menos un bit es 1 \\
+\textasciicircum{} & XOR & 1 solo si los bits son distintos \\
+\texttt{\textasciitilde{}} & NOT & invierte todos los bits \\
+\texttt{<{}<} & shift izquierda & \texttt{n <{}< k} equivale a \(n \cdot 2^k\) \\
+\texttt{>{}>} & shift derecha & \texttt{n >{}> k} equivale a \(\lfloor n / 2^k \rfloor\) \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Potenciación binaria (exponenciación rápida con \texttt{>{}>}):} no se repite aquí el código completo — ya está como \texttt{modpow} (Teoría de Números) y \texttt{power} (Divide y Vencerás). La idea es exactamente la de esta sección: recorrer el exponente \textbf{bit a bit} con \texttt{e \&\ 1} (¿el bit actual está encendido?) y \texttt{e >{}>= 1} (avanzar al siguiente bit), elevando la base al cuadrado en cada paso.

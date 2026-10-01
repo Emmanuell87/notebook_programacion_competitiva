@@ -1,0 +1,25 @@
+\begin{description}
+  \item[Prefijo / Sufijo.] Un prefijo es un subarreglo o substring que empieza en la posición 0; un sufijo es uno que termina en la última posición. Ej. de \texttt{"hola"}: prefijos son \texttt{"h", "ho", "hol", "hola"}; sufijos son \texttt{"a", "la", "ola", "hola"}.
+
+  \item[{Rango \([l, r]\).}] En este documento, salvo que se indique lo contrario, significa \textbf{inclusive en ambos extremos} (incluye tanto \(l\) como \(r\)). Revisa siempre la convención de cada función: por ejemplo \texttt{pref1d} usa un arreglo prefijo con un desfase de 1 internamente, pero la suma de \([l,r]\) sigue siendo inclusive en ambos extremos.
+
+  \item[0-indexado vs.\ 1-indexado.] La mayoría de este documento usa índices desde 0 (como Python). Algunas fórmulas de Combinatoria o Teoría de Números referencian \(1..n\) porque así se enuncian matemáticamente. Antes de copiar un algoritmo a un problema, revisa con qué convención está escrito para no desfasarte en 1.
+
+  \item[Función monótona.] Una función que solo crece (o solo decrece), nunca "da marcha atrás". Es la propiedad que necesita cumplirse para que \textbf{búsqueda binaria sobre la respuesta} y \textbf{two pointers} funcionen correctamente — si la condición no es monótona, estas técnicas pueden dar resultados incorrectos.
+
+  \item[Operación idempotente.] Repetir la operación con un valor ya incluido no cambia el resultado (ej. \(\min(x,x)=x\), \(\gcd(x,x)=x\)). Es la razón por la que \textbf{Sparse Table} funciona con min/max/gcd pero \textbf{no} con suma: sus rangos de consulta se solapan a propósito, y con suma eso duplicaría valores.
+
+  \item[Complejidad amortizada.] El costo \textit{promedio} por operación a lo largo de muchas operaciones, aunque alguna operación puntual sea más cara. Ejemplo: \texttt{find} en DSU con compresión de camino es \(O(\alpha(n))\) amortizado (prácticamente constante), aunque la primera llamada sobre un árbol profundo pueda tardar más.
+
+  \item[Offline vs.\ Online.] Una técnica es \textbf{offline} si necesita conocer \textbf{todas} las consultas de antemano para poder reordenarlas o agruparlas antes de procesarlas (ej. DSU con Rollback + segment tree de tiempo). Es \textbf{online} si responde cada consulta en el momento en que llega, sin saber las futuras (ej. Segment Tree normal, LCA con Binary Lifting).
+
+  \item[Multiconjunto (\textit{multiset}).] Como un conjunto, pero permite elementos repetidos (ej. \(\{1,1,2\}\) es un multiconjunto válido, distinto de \(\{1,2\}\)).
+
+  \item[Grafo dirigido / no dirigido.] Dirigido: la arista \(u\to v\) es distinta de \(v\to u\) (puede existir una sin la otra). No dirigido: si existe la arista entre \(u\) y \(v\), se puede recorrer en ambos sentidos.
+
+  \item[Grafo ponderado / no ponderado.] Ponderado: cada arista tiene un peso/costo asociado (formato típico \texttt{(vecino, peso)}). No ponderado: las aristas no tienen costo, todas "cuestan" lo mismo (formato típico: solo \texttt{vecino}).
+
+  \item[DAG (grafo acíclico dirigido).] Un grafo dirigido sin ciclos. Es la condición necesaria para que exista un orden topológico y para varias técnicas de DP sobre grafos.
+
+  \item[Invariante.] Una propiedad que se mantiene cierta durante toda la ejecución de un algoritmo, sin importar en qué paso esté. Sirve para razonar si un algoritmo es correcto (ej. en DSU, "cada nodo siempre puede llegar a su raíz siguiendo \texttt{parent}" es un invariante).
+\end{description}

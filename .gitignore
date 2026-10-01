@@ -1,0 +1,26 @@
+# === PDF final ===
+notebook.pdf
+
+# === Archivos temporales de LaTeX ===
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+notebook.tex
+
+# === Archivos temporales y binarios de Python / C++ / Java ===
+__pycache__/
+*.pyc
+*.exe
+*.out
+*.o
+*.class
+
+# === Configuraciones del sistema y editor ===
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

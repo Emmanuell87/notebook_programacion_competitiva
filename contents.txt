@@ -1,0 +1,176 @@
+# Cualquier linea despues de un caracter '#' se ignora
+# Los titulos de seccion van entre corchetes: [Titulo de la seccion]
+# Las subsecciones dentro de una seccion siguen el formato:
+#   archivo/dentro/de/code.ext<TAB>Titulo de la subseccion
+# (el separador entre el archivo y el titulo debe ser un TAB, no espacios)
+#
+# El archivo referenciado puede ser:
+#   - un .py  -> se muestra como codigo resaltado (se quita el bloque
+#                "if __name__ == '__main__':" automaticamente)
+#   - un .tex -> se inserta tal cual (para formulas/texto conceptual)
+#
+# Todo lo que este despues de [Fin] se ignora (sirve como "borrador" temporal)
+
+[Tips y Buenas Practicas]
+01_tips/mod_aritmetica.tex	Modularidad y operaciones con mod
+01_tips/lectura_rapida.py	Lectura rapida de datos en Python
+01_tips/atajos.py	Atajos utiles y estructuras frecuentes
+01_tips/recomendaciones.tex	Recomendaciones generales
+
+[Formulas Matematicas]
+02_matematicas/sumas_sucesiones.tex	Sumas y sucesiones clasicas
+02_matematicas/fibonacci_binet.tex	Fibonacci (formula de Binet)
+02_matematicas/combinatoria_formulas.tex	Combinatoria
+02_matematicas/combinatoria.py
+02_matematicas/teoria_numeros_lcm.tex	Teoria de Numeros
+02_matematicas/modpow_phi.py
+02_matematicas/egcd_modinv.py
+02_matematicas/crt.py
+02_matematicas/primos_grandes.py
+02_matematicas/distancias_formulas.tex	Distancias y productos vectoriales
+02_matematicas/dot_cross.py
+02_matematicas/geometria_elemental_formula.tex	Geometria elemental (Pick, Heron, existencia)
+02_matematicas/pick_heron.py
+02_matematicas/geo_computacional_intro.tex	Geometria computacional (avanzada)
+02_matematicas/orientacion.py
+02_matematicas/area_poligono.py
+02_matematicas/en_segmento.py
+02_matematicas/segmentos_intersectan.py
+02_matematicas/dist_punto_segmento.py
+02_matematicas/punto_en_poligono.py
+
+[Algoritmos Ad-Hoc]
+03_adhoc/contar_divisores.py	Cantidad de divisores
+03_adhoc/euclides_gcd.py	Algoritmo de Euclides y MCM
+03_adhoc/criba.py	Numeros primos y Criba de Eratostenes
+03_adhoc/boyer_moore.py	Elemento dominante (Boyer-Moore)
+03_adhoc/z_function.py	Algoritmo Z (Z-function)
+03_adhoc/diofantica.py	Ecuaciones Diofanticas Lineales
+03_adhoc/meet_in_the_middle.py	Meet-in-the-Middle
+03_adhoc/p_vs_np.tex	Problemas P y NP
+
+[Busqueda Exhaustiva]
+04_busqueda_exhaustiva/permutaciones.py	Busqueda Exhaustiva
+04_busqueda_exhaustiva/tsp_fuerza_bruta.py	Problema del Agente Viajero (TSP)
+04_busqueda_exhaustiva/cuadrados_magicos.py	Cuadrados Magicos
+04_busqueda_exhaustiva/es_bipartito.py	Particion y Coloreado de Grafos
+04_busqueda_exhaustiva/tsp_branch_and_bound.py	Ramificacion y Poda (Branch and Bound)
+04_busqueda_exhaustiva/generar_subconjuntos.py	Generacion de Subconjuntos
+
+[Algoritmos Voraces]
+05_voraces/cambio_greedy.py	Cambio de Monedas (Greedy)
+05_voraces/knapsack_fraccional.py	Knapsack Fraccional (Mochila Fraccional)
+05_voraces/seleccionar_actividades.py	Programacion de Actividades (Activity Selection)
+05_voraces/cubrir_intervalo.py	Cobertura de Intervalo (Interval Covering)
+05_voraces/programar_trabajos.py	Programacion de Procesos Unitarios (Job Scheduling)
+05_voraces/swap_count.py	Minimos Intercambios Adyacentes para Balancear Parentesis
+05_voraces/huffman.py	Codigo de Huffman (Construccion Manual del Arbol)
+05_voraces/prim.py	Algoritmo de Prim (Arbol de expansion minima)
+05_voraces/edmonds_karp.py	Algoritmo de Edmonds-Karp (Maximo Flujo)
+
+[Recorridos en Grafos]
+06_grafos/bfs.py	Busqueda en Anchura (BFS)
+06_grafos/dfs.py	Busqueda en Profundidad (DFS)
+06_grafos/topo_sort.py	Orden Topologico (Kahn)
+06_grafos/dijkstra.py	Algoritmo de Dijkstra
+06_grafos/componentes_conexas.py	Componentes Conexas (usando DFS)
+06_grafos/flood_fill.py	Flood Fill en Grilla (BFS)
+06_grafos/ciclo_dirigido.py	Deteccion de ciclo en grafos dirigidos
+06_grafos/ciclo_nodirigido.py	Deteccion de ciclo en grafos no dirigidos
+06_grafos/scc_kosaraju.py	Componentes Fuertemente Conectadas (Kosaraju)
+06_grafos/articulaciones_y_puentes.py	Puntos de articulacion y puentes (Tarjan)
+
+[Flujos y Emparejamientos]
+07_flujos/dinic.py	Dinic (Maximo Flujo, mas rapido que Edmonds-Karp)
+07_flujos/hopcroft_karp.py	Matching bipartito (Hopcroft-Karp)
+07_flujos/hungarian.py	Asignacion de tareas (Hungarian, O(n^3))
+
+[Estructura Disjunta (DSU / Union-Find)]
+08_dsu/dsu.py	-
+08_dsu/dsu_rollback.py	DSU con Rollback (deshacer uniones)
+08_dsu/dsu_pesado.py	DSU con Pesos (Potenciado / Weighted DSU)
+
+[Usos de DSU]
+09_usos_dsu/kruskal.py	Arbol de Expansion Minima (MST) - Kruskal
+09_usos_dsu/tiene_ciclo.py	Deteccion de ciclos en grafos no dirigidos
+09_usos_dsu/contar_componentes_conexas.py	Conteo de Componentes Conexas
+
+[Programacion Dinamica y Subproblemas Optimos]
+10_dp/max_indep_set.py	Maximo Conjunto Independiente en Listas
+10_dp/cortar_cable.py	Corte de Cable (Rod Cutting)
+10_dp/kadane.py	Algoritmo de Kadane - Maxima Suma de Subarreglo
+10_dp/knapsack.py	Knapsack Booleano (0-1)
+10_dp/fib_memo.py	Backtracking + Programacion Dinamica
+10_dp/contar_combinaciones.py	Numero de Combinaciones para Sumar N con Dados
+10_dp/contar_subs_alternantes.py	Conteo de Subsecuencias Alternantes
+10_dp/contar_monedas.py	Cambio de Monedas con Programacion Dinamica
+10_dp/lcs.py	Mayor Subsecuencia Comun (LCS)
+10_dp/edit_distance.py	Distancia de Edicion (Wagner-Fischer)
+10_dp/floyd_warshall.py	Caminos Mas Cortos - Floyd-Warshall
+10_dp/wildcard_matching.py	Coincidencia de Patron con Comodines (Wildcard Matching)
+10_dp/matrix_chain_order.py	Multiplicacion en Cadena de Matrices
+10_dp/optimal_bst.py	Arbol Binario de Busqueda Optimo (Optimal BST)
+10_dp/bellman_ford.py	Caminos con Pesos Negativos - Bellman-Ford
+10_dp/frog.py	Frog (AtCoder DP A)
+10_dp/grid_paths.py	Caminos en grilla (DP con obstaculos)
+
+[Divide y Venceras]
+11_divide_venceras/merge_sort.py	Merge Sort (Ordenamiento por mezcla)
+11_divide_venceras/quicksort.py	QuickSort
+11_divide_venceras/strassen.py	Multiplicacion Matricial de Strassen
+11_divide_venceras/karatsuba.py	Multiplicacion de Enteros - Karatsuba
+11_divide_venceras/potenciacion_rapida.py	Potenciacion Recursiva y Fibonacci Matricial
+11_divide_venceras/fibonacci_matricial.py	-
+11_divide_venceras/metodo_maestro.tex	Metodo Maestro
+11_divide_venceras/merge_count.py	Cantidad de Inversiones en un Arreglo
+11_divide_venceras/quickselect.py	Estadistico de Orden k (QuickSelect)
+11_divide_venceras/closest_pair.py	Pares mas cercanos (Closest Pair of Points)
+11_divide_venceras/convex_hull.py	Convex Hull (Monotone Chain)
+
+[Arbol de Segmentos (Segment Tree)]
+12_segment_tree/segment_tree_basico.py	Segment Tree basico (suma en rango)
+12_segment_tree/segment_tree_lazy.py	Segment Tree con lazy (suma en rango, range_add y range_set)
+
+[Algoritmos de Strings]
+13_strings/intro.tex	-
+13_strings/trie.py	Trie (Arbol de Prefijos)
+13_strings/aho_corasick.py	Aho-Corasick (busqueda de multiples patrones a la vez)
+13_strings/kmp.py	KMP (Knuth-Morris-Pratt) - Busqueda de patrones
+13_strings/hashing.py	Hashing de cadenas (Rabin-Karp / Rolling Hash)
+13_strings/manacher.py	Manacher - Palindromo mas largo
+
+[Estructuras y Tecnicas Adicionales]
+14_estructuras_adicionales/ordered_set_fenwick.py	Ordered Set (estadistico de orden) con Fenwick + compresion
+14_estructuras_adicionales/prefix_sums.py	Prefix sums 1D / 2D / 3D
+14_estructuras_adicionales/sparse_table.py	RMQ estatico (minimo en rango) con Sparse Table
+
+[Two Pointers (Punteros Dobles / Ventana Deslizante)]
+15_two_pointers/intro.tex	-
+15_two_pointers/ventana_deslizante.py	Ventana deslizante (ambos punteros avanzan en la misma direccion)
+15_two_pointers/punteros_opuestos.py	Punteros opuestos (uno empieza al inicio, otro al final, y se acercan)
+
+[Manejo de Bits]
+16_bits/operadores_tabla.tex	Operadores y trucos basicos
+16_bits/trucos_basicos.py	-
+16_bits/xor_propiedades.py	Propiedades de XOR y Prefix XOR
+16_bits/trie_xor.py	Trie binario de bits - maximo XOR entre pares
+16_bits/submascaras.py	Iterar sobre todas las submascaras de una mascara
+
+[LCA (Ancestro Comun mas Bajo)]
+17_lca/intro.tex	-
+17_lca/lca_binary_lifting.py	LCA con Binary Lifting
+17_lca/lca_binary_lifting_peso.py	Extender Binary Lifting con informacion extra en el camino
+17_lca/lca_euler_tour.py	LCA con Euler Tour + Sparse Table
+
+[Busqueda Binaria y Terciaria]
+18_busqueda_binaria/binary_search.py	Busqueda Binaria
+18_busqueda_binaria/ternary_search.py	Busqueda Terciaria
+
+[Glosario de Terminos]
+19_glosario/subarreglo_subsecuencia_subconjunto.tex	Subarreglo, Subsecuencia y Subconjunto
+19_glosario/otros_terminos.tex	Otros terminos frecuentes
+
+[Fin]
+
+# ---- Migracion completa: las 19 secciones del documento principal ----
+# ---- ya estan todas aqui. ----

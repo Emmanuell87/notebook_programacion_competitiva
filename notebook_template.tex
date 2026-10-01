@@ -1,0 +1,65 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{margin=0.8in}
+\usepackage{lmodern}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{needspace}
+
+\lstset{
+  language=Python,
+  inputencoding=utf8,
+  extendedchars=true,
+  basicstyle=\ttfamily\scriptsize,
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=1,
+  numbersep=5pt,
+  frame=single,
+  showstringspaces=false,
+  breaklines=true,
+  aboveskip=4pt,
+  belowskip=2pt,
+  commentstyle=\color{gray},
+  keywordstyle=\color{blue},
+  stringstyle=\color{orange},
+  literate=
+    {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+    {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+    {ñ}{{\~n}}1 {Ñ}{{\~N}}1,
+}
+
+% reduce el espacio extra que titlesec/parrafos dejan antes de cada subsection
+\titlespacing*{\subsection}{0pt}{8pt}{4pt}
+
+\titleformat{\section}{\Large\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{1em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Notebook de Algoritmos}
+\lhead{Programación Competitiva}
+\rfoot{\thepage}
+
+\title{\textbf{Notebook de Programación Competitiva}}
+\date{}
+\author{}
+
+\begin{document}
+	\shorthandoff{"<>}
+
+	\maketitle
+	\tableofcontents
+	\newpage
+
+%%CONTENIDO%%
+
+\end{document}
