@@ -1,9 +1,6 @@
 # Encontrar todas las componentes conexas en un grafo no dirigido.
-# grafo = diccionario {nodo: [vecino1, vecino2, ...]}.
-#
-# NOTA: incluye su propia copia de dfs (ver tambien dfs.py), usada
-# aqui pasando un set() compartido para ir acumulando visitados entre
-# varias llamadas.
+# grafo = diccionario {nodo: [vecino1, vecino2, ...]}. dfs() recibe un
+# set() compartido para ir acumulando visitados entre varias llamadas.
 
 
 def dfs(grafo, inicio, visitado=None):

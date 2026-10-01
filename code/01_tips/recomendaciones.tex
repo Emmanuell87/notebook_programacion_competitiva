@@ -1,6 +1,8 @@
 \begin{itemize}
-  \item Usa \texttt{sys.setrecursionlimit(10**6)} si usas recursión profunda.
+  \item Usa \texttt{sys.setrecursionlimit(10**6)} si usas recursión profunda (ver también "Recursión profunda" para la alternativa con pila explícita).
   \item Precalcula factoriales, potencias o primos cuando haya múltiples consultas.
   \item Siempre considera casos extremos y bordes: \( n = 1 \), \( n = 10^5 \), listas vacías, todos iguales, etc.
   \item Evita usar \texttt{input()} en bucles si hay mucho texto: preprocesa con \texttt{readlines()} o \texttt{sys.stdin.read()}.
+  \item Python 3.11+ limita por defecto la conversión entre enteros gigantes y texto a 4300 dígitos (\texttt{str(n)}, \texttt{print(n)} o \texttt{input()} con un entero así de grande lanzan \texttt{ValueError}). Si el problema puede generar enteros enormes (factoriales, Fibonacci grande, etc.), sube el límite al inicio:\\
+  \texttt{sys.set\_int\_max\_str\_digits(10**6)}
 \end{itemize}

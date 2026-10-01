@@ -49,8 +49,18 @@ def parsear_contents(ruta):
     """
     Devuelve una lista de bloques:
       ("seccion", titulo)
-      ("archivo", ruta_relativa, titulo_subseccion)
+      ("archivo", ruta_relativa, titulo_subseccion, es_mini)
     Deja de leer apenas encuentra una seccion llamada exactamente "Fin".
+
+    titulo_subseccion puede ser:
+      - un titulo normal -> crea un \\subsection{} numerado (aparece en el indice)
+      - None -> el archivo continua la subseccion anterior, sin ningun
+        encabezado (es_mini se ignora)
+      - un titulo con es_mini=True -> el archivo continua la subseccion
+        anterior pero con una etiqueta chica (sin numerar, no aparece en
+        el indice), util para distinguir funciones dentro de un mismo
+        grupo de archivos pegados (ej. Geometria computacional). Se arma
+        con el prefijo "~" en contents.txt: "~nombre_funcion()".
     """
     bloques = []
     detenido = False
@@ -76,17 +86,21 @@ def parsear_contents(ruta):
                 # sin TAB: es un archivo que continua la subseccion anterior
                 # (muchos editores recortan el TAB final de una linea si no
                 # hay texto despues, asi que esto cubre ese caso tambien)
-                bloques.append(("archivo", linea.strip(), None))
+                bloques.append(("archivo", linea.strip(), None, False))
                 continue
 
             ruta_archivo, titulo_sub = linea.split("\t", 1)
             titulo_sub = titulo_sub.strip()
             # titulo vacio o "-" = continuar en la misma subseccion anterior,
-            # sin crear un encabezado nuevo (util cuando una subseccion
-            # del documento principal mezcla formulas (.tex) y codigo (.py))
-            if titulo_sub == "-":
-                titulo_sub = ""
-            bloques.append(("archivo", ruta_archivo.strip(), titulo_sub or None))
+            # sin crear ningun encabezado (util cuando una subseccion del
+            # documento principal mezcla formulas (.tex) y codigo (.py))
+            if titulo_sub == "-" or not titulo_sub:
+                bloques.append(("archivo", ruta_archivo.strip(), None, False))
+            elif titulo_sub.startswith("~"):
+                # etiqueta chica sin numerar (ver docstring)
+                bloques.append(("archivo", ruta_archivo.strip(), titulo_sub[1:].strip(), True))
+            else:
+                bloques.append(("archivo", ruta_archivo.strip(), titulo_sub, False))
 
     return bloques
 
@@ -102,13 +116,20 @@ def construir_contenido_tex(bloques):
             _, titulo = bloque
             partes.append(f"\\section{{{escapar_latex(titulo)}}}\n")
         else:
-            _, ruta_rel, titulo_sub = bloque
+            _, ruta_rel, titulo_sub, es_mini = bloque
             ruta_completa = CODE_DIR / ruta_rel
+
+            if titulo_sub is not None:
+                if es_mini:
+                    # etiqueta chica sin numerar: distingue funciones
+                    # dentro de un mismo grupo de archivos pegados, sin
+                    # crear una entrada nueva en el indice.
+                    partes.append(f"\\textit{{\\texttt{{{escapar_latex(titulo_sub)}}}}}")
+                else:
+                    partes.append(f"\\subsection{{{escapar_latex(titulo_sub)}}}")
 
             if ruta_completa.suffix == ".tex":
                 # contenido conceptual (formulas, texto) ya escrito en LaTeX: se inserta tal cual
-                if titulo_sub is not None:
-                    partes.append(f"\\subsection{{{escapar_latex(titulo_sub)}}}")
                 contenido = ruta_completa.read_text(encoding="utf-8").rstrip("\n")
                 partes.append(contenido + "\n")
             else:
@@ -118,9 +139,6 @@ def construir_contenido_tex(bloques):
                 if marcador in codigo:
                     codigo = codigo.split(marcador)[0].rstrip("\n")
 
-                if titulo_sub is not None:
-                    partes.append(f"\\subsection{{{escapar_latex(titulo_sub)}}}")
-                partes.append(f"\\textit{{Archivo: \\texttt{{{escapar_latex(ruta_rel)}}}}}")
                 partes.append("\\begin{lstlisting}[language=Python]")
                 partes.append(codigo)
                 partes.append("\\end{lstlisting}\n")

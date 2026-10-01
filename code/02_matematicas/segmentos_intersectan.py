@@ -2,9 +2,6 @@
 # Preguntas del tipo "este cable/pared/trayectoria cruza a este otro?".
 # p1,p2 extremos del primer segmento; p3,p4 del segundo. Devuelve True/False
 # (no el punto de interseccion).
-#
-# NOTA: incluye copias locales de orientacion() y en_segmento() para que
-# el archivo sea autocontenido (ver tambien orientacion.py, en_segmento.py).
 
 
 def orientacion(o, a, b):

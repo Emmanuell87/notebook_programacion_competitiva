@@ -4,9 +4,6 @@
 # (mst_peso, mst_aristas). Conviene sobre Prim cuando el grafo es
 # disperso (pocas aristas), porque el costo dominante es ordenar las
 # aristas: O(E log E).
-#
-# NOTA: incluye su propia copia de DSU para que el archivo sea
-# autocontenido (ver tambien 08_dsu/dsu.py).
 
 
 class DSU:

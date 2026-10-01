@@ -3,9 +3,6 @@
 # restricciones de "resto al dividir por" y pide el menor x que las
 # cumple todas a la vez (ciclos/calendarios con distinto periodo).
 # Para combinar mas de 2 congruencias, aplicar crt repetidamente de a pares.
-#
-# NOTA: incluye su propia copia de egcd para que el archivo sea
-# autocontenido (ver tambien egcd_modinv.py).
 
 
 def egcd(a, b):

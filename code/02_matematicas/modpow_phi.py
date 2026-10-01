@@ -1,6 +1,5 @@
-# modpow(a,e,m): a^e mod m en O(log e).
+# modpow(a,e,m): a^e mod m en O(log e), por exponenciacion binaria.
 # modinv_prime(a,p): inverso de a modulo p, SOLO si p es primo (usa Fermat).
-#   Si el modulo no es primo, usar modinv (egcd_modinv.py).
 # phi(n): calcula la funcion totiente de Euler en O(sqrt(n)) factorizando n.
 
 

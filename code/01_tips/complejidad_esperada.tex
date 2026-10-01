@@ -1,0 +1,28 @@
+Antes de implementar, las restricciones del problema (el tamaño máximo de \(N\)) suelen indicar qué complejidad se espera de la solución. Como referencia aproximada:
+
+\begin{center}
+\small
+\begin{tabular}{|p{2.2cm}|p{3.3cm}|}
+\hline
+\textbf{Restricción} & \textbf{Complejidad esperada} \\
+\hline
+\(N \leq 10\) & \(O(N!)\) o \(O(2^N \cdot N)\) (fuerza bruta / permutaciones) \\
+\hline
+\(N \leq 20\)--\(22\) & \(O(2^N)\) (subconjuntos, bitmask DP) \\
+\hline
+\(N \leq 100\) & \(O(N^4)\) \\
+\hline
+\(N \leq 400\)--\(500\) & \(O(N^3)\) \\
+\hline
+\(N \leq 2000\)--\(5000\) & \(O(N^2)\) \\
+\hline
+\(N \leq 10^5\)--\(10^6\) & \(O(N \log N)\) \\
+\hline
+\(N \leq 10^7\)--\(10^8\) & \(O(N)\) \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{¿Cuándo usar?} Como primer filtro al leer un problema: si \(N \leq 20\), ya se puede sospechar de una solución exponencial ($2^N$); si \(N \leq 10^5\), probablemente hace falta algo con \(\log\) (ordenar, árbol de segmentos, binary search) en vez de un \(O(N^2)\) ingenuo.
+
+Como regla mental muy aproximada, una CPU suele ejecutar del orden de \(10^8\) operaciones simples por segundo en C++, y considerablemente menos en Python (del orden de \(10^7\)). \textbf{Esta regla no debe tomarse como una medida exacta}: el tiempo real depende de las constantes del algoritmo, el límite de tiempo del problema y qué tan "simples" son las operaciones (ej. operaciones con listas/diccionarios en Python son más lentas que aritmética pura).

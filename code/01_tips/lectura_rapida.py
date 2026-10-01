@@ -1,3 +1,4 @@
+import io
 import sys
 
 # ---------------------------------------------------------------
@@ -53,6 +54,36 @@ def leer_tokens(fuente=None):
     return leer_int, leer_ints
 
 
+# ---------------------------------------------------------------
+# Nivel 3 -- cuando el problema NO dice cuantos casos/lineas hay y
+# hay que leer hasta que se acabe el input (EOF, "End Of File"):
+#
+#   resultado = []
+#   try:
+#       while True:
+#           resultado.append(input())
+#   except EOFError:
+#       pass
+#
+# ---------------------------------------------------------------
+
+
+def leer_hasta_eof(entrada_simulada=None):
+    """Lee lineas hasta EOF con el patron de arriba. entrada_simulada:
+    string con el input completo (para pruebas, reemplaza sys.stdin),
+    o None para leer de sys.stdin de verdad."""
+    if entrada_simulada is not None:
+        sys.stdin = io.StringIO(entrada_simulada)
+
+    resultado = []
+    try:
+        while True:
+            resultado.append(input())
+    except EOFError:
+        pass
+    return resultado
+
+
 if __name__ == "__main__":
     entrada_simulada = "3\n4\n1 2 3 4\n2\n10 20\n5\n5 4 3 2 1\n"
     leer_int, leer_ints = leer_tokens(entrada_simulada)
@@ -65,4 +96,8 @@ if __name__ == "__main__":
         resultados.append(sum(arr))
 
     assert resultados == [10, 30, 15], resultados
+
+    lineas = leer_hasta_eof("hola\nmundo\n123\n")
+    assert lineas == ["hola", "mundo", "123"], lineas
+
     print("OK")

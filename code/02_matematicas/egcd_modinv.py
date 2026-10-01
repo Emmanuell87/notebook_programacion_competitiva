@@ -1,6 +1,5 @@
 # Inverso modular general (funciona aunque m no sea primo, siempre que
-# gcd(a,m)=1), usando Euclides extendido. egcd(a,b) resuelve a*x+b*y=gcd(a,b)
-# y tambien se reutiliza en crt.py.
+# gcd(a,m)=1), usando Euclides extendido. egcd(a,b) resuelve a*x+b*y=gcd(a,b).
 
 
 def egcd(a, b):

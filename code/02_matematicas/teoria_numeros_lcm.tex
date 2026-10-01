@@ -6,3 +6,5 @@
 \textbf{Pequeño Teorema de Fermat y totiente de Euler.}
 Si \(p\) primo y \(\gcd(a,p)=1\): \(a^{p-1}\equiv 1 \pmod p\).
 \(\varphi(n)\): cantidad de enteros \(1\le k\le n\) coprimos con \(n\).
+
+\textit{En la práctica}, para \(a^b \bmod m\) Python ya trae \texttt{pow(a, b, mod)} optimizado, y para el inverso modular \texttt{pow(a, -1, mod)} (Python 3.8+, funciona si \(\gcd(a, mod) = 1\), no hace falta que \(mod\) sea primo). Las implementaciones de abajo quedan como referencia del algoritmo, útil por ejemplo para potenciar matrices (no solo números). \texttt{egcd}/\texttt{modinv} siguen siendo necesarios para el Teorema Chino del Resto y ecuaciones diofánticas, donde se necesitan los coeficientes de Bézout completos.

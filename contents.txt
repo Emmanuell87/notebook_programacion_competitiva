@@ -4,6 +4,16 @@
 #   archivo/dentro/de/code.ext<TAB>Titulo de la subseccion
 # (el separador entre el archivo y el titulo debe ser un TAB, no espacios)
 #
+# El titulo tambien puede ser:
+#   "-" (o vacio)   -> el archivo continua la subseccion anterior, sin
+#                      ningun encabezado nuevo (util cuando una
+#                      subseccion mezcla formulas (.tex) y codigo (.py))
+#   "~lo-que-sea"   -> el archivo continua la subseccion anterior, pero
+#                      con una etiqueta chica sin numerar (no aparece en
+#                      el indice). Util para distinguir funciones dentro
+#                      de un mismo grupo de archivos pegados, ej.:
+#                      "~orientacion()"
+#
 # El archivo referenciado puede ser:
 #   - un .py  -> se muestra como codigo resaltado (se quita el bloque
 #                "if __name__ == '__main__':" automaticamente)
@@ -13,7 +23,10 @@
 
 [Tips y Buenas Practicas]
 01_tips/mod_aritmetica.tex	Modularidad y operaciones con mod
+01_tips/complejidad_esperada.tex	Complejidad esperada segun las restricciones
 01_tips/lectura_rapida.py	Lectura rapida de datos en Python
+01_tips/escritura_rapida.py	Escritura rapida de resultados en Python
+01_tips/recursion_profunda.py	Recursion profunda (limite y alternativa iterativa)
 01_tips/atajos.py	Atajos utiles y estructuras frecuentes
 01_tips/recomendaciones.tex	Recomendaciones generales
 
@@ -21,23 +34,23 @@
 02_matematicas/sumas_sucesiones.tex	Sumas y sucesiones clasicas
 02_matematicas/fibonacci_binet.tex	Fibonacci (formula de Binet)
 02_matematicas/combinatoria_formulas.tex	Combinatoria
-02_matematicas/combinatoria.py
+02_matematicas/combinatoria.py	~combos_con_repeticion(), estrellas_y_barras(), catalan()
 02_matematicas/teoria_numeros_lcm.tex	Teoria de Numeros
-02_matematicas/modpow_phi.py
-02_matematicas/egcd_modinv.py
-02_matematicas/crt.py
-02_matematicas/primos_grandes.py
+02_matematicas/modpow_phi.py	~modpow(), modinv_prime(), phi()
+02_matematicas/egcd_modinv.py	~egcd(), modinv()
+02_matematicas/crt.py	~crt()
+02_matematicas/primos_grandes.py	~es_primo(), pollard_rho(), factorizar()
 02_matematicas/distancias_formulas.tex	Distancias y productos vectoriales
-02_matematicas/dot_cross.py
+02_matematicas/dot_cross.py	~dot(), cross()
 02_matematicas/geometria_elemental_formula.tex	Geometria elemental (Pick, Heron, existencia)
-02_matematicas/pick_heron.py
+02_matematicas/pick_heron.py	~pick_area(), heron(), es_triangulo()
 02_matematicas/geo_computacional_intro.tex	Geometria computacional (avanzada)
-02_matematicas/orientacion.py
-02_matematicas/area_poligono.py
-02_matematicas/en_segmento.py
-02_matematicas/segmentos_intersectan.py
-02_matematicas/dist_punto_segmento.py
-02_matematicas/punto_en_poligono.py
+02_matematicas/orientacion.py	~orientacion()
+02_matematicas/area_poligono.py	~area_poligono()
+02_matematicas/en_segmento.py	~en_segmento()
+02_matematicas/segmentos_intersectan.py	~segmentos_se_intersectan()
+02_matematicas/dist_punto_segmento.py	~dist_punto_segmento()
+02_matematicas/punto_en_poligono.py	~punto_en_poligono()
 
 [Algoritmos Ad-Hoc]
 03_adhoc/contar_divisores.py	Cantidad de divisores
@@ -86,7 +99,7 @@
 07_flujos/hungarian.py	Asignacion de tareas (Hungarian, O(n^3))
 
 [Estructura Disjunta (DSU / Union-Find)]
-08_dsu/dsu.py	-
+08_dsu/dsu.py	~class DSU
 08_dsu/dsu_rollback.py	DSU con Rollback (deshacer uniones)
 08_dsu/dsu_pesado.py	DSU con Pesos (Potenciado / Weighted DSU)
 
@@ -120,7 +133,7 @@
 11_divide_venceras/strassen.py	Multiplicacion Matricial de Strassen
 11_divide_venceras/karatsuba.py	Multiplicacion de Enteros - Karatsuba
 11_divide_venceras/potenciacion_rapida.py	Potenciacion Recursiva y Fibonacci Matricial
-11_divide_venceras/fibonacci_matricial.py	-
+11_divide_venceras/fibonacci_matricial.py	~mult(), matrix_pow(), fibonacci()
 11_divide_venceras/metodo_maestro.tex	Metodo Maestro
 11_divide_venceras/merge_count.py	Cantidad de Inversiones en un Arreglo
 11_divide_venceras/quickselect.py	Estadistico de Orden k (QuickSelect)
@@ -151,7 +164,7 @@
 
 [Manejo de Bits]
 16_bits/operadores_tabla.tex	Operadores y trucos basicos
-16_bits/trucos_basicos.py	-
+16_bits/trucos_basicos.py	~es_potencia_de_2(), contar_bits()
 16_bits/xor_propiedades.py	Propiedades de XOR y Prefix XOR
 16_bits/trie_xor.py	Trie binario de bits - maximo XOR entre pares
 16_bits/submascaras.py	Iterar sobre todas las submascaras de una mascara
