@@ -4,15 +4,13 @@
 \usepackage[spanish]{babel}
 \usepackage{amsmath, amssymb}
 \usepackage{geometry}
-\geometry{margin=0.8in}
+\geometry{margin=0.5in,landscape,columnsep=0.3in}
 \usepackage{lmodern}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{xcolor}
-\usepackage{multicol}
-\usepackage{needspace}
 
 \lstset{
   language=Python,
@@ -23,11 +21,13 @@
   numberstyle=\tiny,
   stepnumber=1,
   numbersep=5pt,
-  frame=single,
+  frame=tb,
+  framerule=0.4pt,
+  framesep=3pt,
   showstringspaces=false,
   breaklines=true,
-  aboveskip=4pt,
-  belowskip=2pt,
+  aboveskip=6pt,
+  belowskip=6pt,
   commentstyle=\color{gray},
   keywordstyle=\color{blue},
   stringstyle=\color{orange},
@@ -38,7 +38,7 @@
 }
 
 % reduce el espacio extra que titlesec/parrafos dejan antes de cada subsection
-\titlespacing*{\subsection}{0pt}{8pt}{4pt}
+\titlespacing*{\subsection}{0pt}{6pt}{3pt}
 
 \titleformat{\section}{\Large\bfseries}{\thesection.}{1em}{}
 \titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{1em}{}
@@ -59,6 +59,8 @@
 	\maketitle
 	\tableofcontents
 	\newpage
+
+	\twocolumn
 
 %%CONTENIDO%%
 
