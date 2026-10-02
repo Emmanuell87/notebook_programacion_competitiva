@@ -1,6 +1,7 @@
 # Insertar y buscar palabras/prefijos en O(L), donde L es la longitud
 # de la palabra. Util para autocompletado, conteo de prefijos,
 # diccionarios. palabra/prefijo son strings; se usa como
+    # --- ejemplo ---
 # t = Trie(); t.insertar("casa"), etc. (el propio objeto raiz hace de
 # nodo).
 #
@@ -52,5 +53,6 @@ if __name__ == "__main__":
     assert t.buscar("perro") is False
     assert t.contar_con_prefijo("ca") == 4
     assert t.contar_con_prefijo("cas") == 1
+    # --- fin ejemplo ---
     assert t.contar_con_prefijo("z") == 0
     print("OK")

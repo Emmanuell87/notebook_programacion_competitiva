@@ -70,6 +70,7 @@ class LCABinaryLiftingConPeso:
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
     # Arbol: 0 raiz; hijos [1,2]; 1->[3,4]; 2->[5,6]
     n = 7
     grafo = [[] for _ in range(n)]
@@ -85,6 +86,7 @@ if __name__ == "__main__":
 
     lca, mx = st.query(3, 5)  # 3->1(2)->0(5)->2(3)->5(4): max=5, lca=0
     assert (lca, mx) == (0, 5), (lca, mx)
+    # --- fin ejemplo ---
 
     lca, mx = st.query(1, 6)  # 1->0(5)->2(3)->6(6): max=6, lca=0
     assert (lca, mx) == (0, 6), (lca, mx)

@@ -23,6 +23,11 @@ def two_sum_ordenado(arr, objetivo):
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
+    # arreglo ordenado: buscar un par con suma 15
+    assert two_sum_ordenado([1, 2, 4, 7, 11, 15], 15) == (2, 4)   # 4 + 11
+    assert two_sum_ordenado([1, 2, 3], 100) is None
+    # --- fin ejemplo ---
     import random
     random.seed(3)
     for _ in range(100):

@@ -1,0 +1,42 @@
+Lista de verificación para usar antes de enviar una solución y cuando el veredicto no es \textit{Accepted}.
+
+\textbf{Antes de enviar.}
+\begin{props}
+  \item Escribir casos de prueba propios si el ejemplo no alcanza. Si el límite de tiempo está justo, generar el caso máximo y medir.
+  \item Quitar la salida de depuración. Para depurar conviene escribir a \texttt{sys.stderr}, que no afecta la salida.
+  \item Confirmar que se envía el archivo correcto y que el formato de salida coincide (espacios, saltos de línea, mayúsculas como \texttt{YES}/\texttt{Yes}).
+\end{props}
+
+\textbf{WA (Wrong Answer).}
+\begin{props}
+  \item Releer el enunciado completo. ¿Se entendió bien el problema? ¿El algoritmo funciona para todo el rango de entrada y para los casos especiales (\(n = 1\), lista vacía, todos iguales, negativos)?
+  \item Escribir una solución lenta pero correcta (fuerza bruta) y compararla con la rápida sobre casos aleatorios pequeños.
+  \item ¿Se limpian las estructuras globales entre casos de prueba? ¿Hay variables sin inicializar o confundidas (\(n\)/\(m\), \(i\)/\(j\))?
+  \item \texttt{/} devuelve \texttt{float} y pierde precisión con enteros grandes: usar \texttt{//} cuando el resultado debe ser entero. Comparar \texttt{float} con tolerancia, no con \texttt{==}.
+  \item Matrices: \texttt{[[0] * m] * n} repite \textbf{la misma fila} \(n\) veces. Usar \texttt{[[0] * m for \_ in range(n)]}.
+  \item \texttt{b = a} no copia la lista: usar \texttt{a[:]}, \texttt{list(a)} o \texttt{copy.deepcopy}. Un argumento por defecto mutable (\texttt{def f(x, memo=[])}) se comparte entre llamadas.
+  \item Los índices negativos no dan error (\texttt{a[-1]} es el último elemento), por lo que un error de borde puede pasar sin avisar.
+  \item Revisar \texttt{return} vs \texttt{continue} vs \texttt{break}, y \texttt{<} vs \texttt{<=}. No modificar una lista mientras se itera sobre ella.
+  \item Agregar \texttt{assert} y volver a enviar. Explicar el algoritmo a un compañero o pedirle que lea el código.
+\end{props}
+
+\textbf{TLE (Time Limit Exceeded).}
+\begin{props}
+  \item ¿Hay un posible bucle infinito? ¿Cuál es la complejidad real? Un límite de tiempo alto no implica que no se espere algo eficiente (ver la tabla de complejidad esperada).
+  \item Usar entrada y salida rápidas (\texttt{sys.stdin}, un solo \texttt{print} con \texttt{join}).
+  \item Evitar operaciones ocultas de costo \(O(n)\): \texttt{x in lista} (usar \texttt{set} o \texttt{dict}), \texttt{lista.pop(0)} o \texttt{insert(0, x)} (usar \texttt{deque}), \texttt{s += c} en un ciclo sobre strings (acumular en una lista y usar \texttt{join}), y cortar listas (\texttt{a[i:]}) en cada llamada recursiva (pasar índices).
+  \item Si la plataforma lo permite, enviar con PyPy.
+\end{props}
+
+\textbf{RTE (Runtime Error).}
+\begin{props}
+  \item \texttt{IndexError}: lectura fuera de rango. \texttt{KeyError}: clave ausente en un \texttt{dict} (considerar \texttt{defaultdict} o \texttt{.get}). \texttt{ZeroDivisionError}: división o módulo por 0.
+  \item \texttt{RecursionError}: subir \texttt{sys.setrecursionlimit} o pasar a una pila explícita (ver Recursión profunda).
+  \item \texttt{ValueError}: \texttt{int(\textquotesingle\textquotesingle)} por una línea vacía, o conversión de un entero de más de 4300 dígitos a texto (ver Recomendaciones generales). \texttt{EOFError}: se intentó leer más datos de los que hay.
+\end{props}
+
+\textbf{MLE (Memory Limit Exceeded).}
+\begin{props}
+  \item Estimar la memoria máxima necesaria. Una lista de \(10^6\) elementos ocupa unos 8 MB solo en referencias, y cada entero distinto ocupa además unos 28 bytes. Para volúmenes grandes conviene \texttt{array} (por ejemplo, \texttt{array('i')} usa 4 bytes por elemento) o \texttt{bytearray}.
+  \item Limpiar o reutilizar las estructuras entre casos de prueba. Usar generadores en vez de construir listas intermedias cuando solo se recorren una vez.
+\end{props}

@@ -1,6 +1,7 @@
 # Pares mas cercanos (Closest Pair of Points). Encontrar la distancia
-# minima entre dos puntos en un plano, en O(n log n) (mejor que el
-# O(n^2) de probar todos los pares). points = lista de puntos (x,y);
+# minima entre dos puntos en un plano, en O(n log^2 n) (mejor que el
+# O(n^2) de probar todos los pares; se reduce a O(n log n) si la franja
+# se mantiene ordenada por y al hacer merge). points = lista de puntos (x,y);
 # n >= 2. Devuelve la distancia minima ENTERA (usa int(...); quitar el
 # int() final si necesitas precision decimal).
 
@@ -58,6 +59,10 @@ def fuerza_bruta(points):
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
+    pts = [(0, 0), (10, 10), (3, 4), (20, 20)]
+    assert closest_pair(pts) == 5   # (0,0) y (3,4)
+    # --- fin ejemplo ---
     import random
     random.seed(0)
     for _ in range(30):

@@ -1,0 +1,36 @@
+Se asume \(m > 0\). En Python, \texttt{a \% m} con \(m > 0\) siempre da un resultado en \([0, m-1]\), incluso si \(a\) es negativo.
+
+\textbf{Operaciones básicas.}
+\begin{props}
+  \item \textbf{Suma:} \((a+b) \bmod m = ((a \bmod m) + (b \bmod m)) \bmod m\)
+  \item \textbf{Resta:} \((a-b) \bmod m = ((a \bmod m) - (b \bmod m) + m) \bmod m\). El \(+m\) solo hace falta en lenguajes donde el resto puede ser negativo (no en Python).
+  \item \textbf{Producto:} \((a \cdot b) \bmod m = ((a \bmod m) \cdot (b \bmod m)) \bmod m\)
+  \item \textbf{Potencia:} \(a^k \bmod m = (a \bmod m)^k \bmod m\)
+  \item \textbf{Congruencia:} \(a \equiv b \pmod m \iff m \mid (a-b)\). Si \(a \equiv b\) y \(c \equiv d\), entonces \(a+c \equiv b+d\), \(ac \equiv bd\) y \(a^k \equiv b^k\).
+  \item \textbf{Descomposición:} \(a = \lfloor a/m \rfloor \cdot m + (a \bmod m)\), con \(0 \le a \bmod m < m\).
+  \item \textbf{Negativos:} \((-a) \bmod m = (m - a \bmod m) \bmod m\)
+  \item \(\gcd(a \bmod m,\, m) = \gcd(a,\, m)\)
+\end{props}
+
+\textbf{Varios módulos.}
+\begin{props}
+  \item \((a \bmod mn) \bmod m = a \bmod m\)
+  \item \(a \equiv b \pmod m\) y \(a \equiv b \pmod n\) \(\iff\) \(a \equiv b \pmod{\operatorname{lcm}(m,n)}\). Si \(\gcd(m,n)=1\), el módulo combinado es \(mn\).
+\end{props}
+
+\textbf{División e inversos.} El cálculo del inverso modular (\texttt{pow(a, -1, mod)}, Fermat o Euclides extendido) ya está cubierto en \textit{Teoria de Numeros}; aquí solo las propiedades.
+\begin{props}
+  \item \textbf{No} se puede dividir los restos: \((a/b) \bmod m \ne (a \bmod m)/(b \bmod m)\). Se multiplica por el inverso modular \(b^{-1}\), que existe \(\iff \gcd(b,m)=1\).
+  \item Si \(b \mid a\) y \(\gcd(b,m)=1\): \((a/b) \bmod m = a \cdot b^{-1} \bmod m\).
+  \item \textbf{Fermat} (\(p\) primo, \(p \nmid a\)): \(a^{-1} \equiv a^{p-2} \pmod p\).
+  \item \((ab)^{-1} \equiv a^{-1} b^{-1} \pmod m\)
+  \item \textbf{Cancelación:} \(ac \equiv bc \pmod m \implies a \equiv b \pmod{m/\gcd(c,m)}\). Si \(\gcd(c,m)=1\) se puede cancelar \(c\) sin más.
+\end{props}
+
+\textbf{Exponentes grandes.}
+\begin{props}
+  \item \textbf{Fermat:} \(p\) primo, \(p \nmid a\): \(a^b \equiv a^{\,b \bmod (p-1)} \pmod p\).
+  \item \textbf{Euler:} \(\gcd(a,m)=1\): \(a^b \equiv a^{\,b \bmod \varphi(m)} \pmod m\).
+  \item \textbf{Euler generalizado} (sin exigir coprimos): si \(b \ge \log_2 m\), entonces \(a^b \equiv a^{\,(b \bmod \varphi(m)) + \varphi(m)} \pmod m\).
+  \item \textbf{Torres} \(a^{b^c} \bmod m\): el exponente \(b^c\) se reduce módulo \(\varphi(m)\) (con el \(+\varphi(m)\) de la versión generalizada). Si \(b^c\) es demasiado grande para calcularlo, se aplica la misma regla de forma recursiva: \(b^c \bmod \varphi(m)\) usa \(\varphi(\varphi(m))\), y así sucesivamente.
+\end{props}

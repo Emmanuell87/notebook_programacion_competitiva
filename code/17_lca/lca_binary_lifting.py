@@ -58,6 +58,7 @@ class LCABinaryLifting:
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
     # arbol de 7 nodos (0-indexado): 0 es raiz, hijos [1,2];
     # 1 tiene hijos [3,4]; 2 tiene hijos [5,6]
     n = 7
@@ -73,4 +74,5 @@ if __name__ == "__main__":
     assert bl.lca(5, 6) == 2
     assert bl.lca(1, 3) == 1  # ancestro directo
     assert bl.kth_ancestor(3, 2) == 0  # 3 -> 1 -> 0
+    # --- fin ejemplo ---
     print("OK")

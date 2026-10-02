@@ -61,6 +61,13 @@ def fuerza_bruta_max_xor(arr):
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
+    assert max_xor_par([3, 10, 5, 25, 2, 8]) == 28   # 5 ^ 25
+    t = TrieXOR(5)
+    t.insertar(5)
+    t.insertar(25)
+    assert t.max_xor_con(3) == 26   # 3 ^ 25
+    # --- fin ejemplo ---
     import random
     random.seed(2)
     for _ in range(100):

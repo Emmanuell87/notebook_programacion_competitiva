@@ -1,4 +1,18 @@
-\textit{¿Cuándo usar?} \texttt{pick\_area}: cuando conoces cuántos puntos de una grilla entera están estrictamente dentro (\(I\)) y sobre el borde (\(B\)) de un polígono de vértices enteros. \texttt{heron}: área de un triángulo conociendo solo sus 3 lados (sin coordenadas). \texttt{es\_triangulo}: verifica la desigualdad triangular antes de usar \texttt{heron}. \textbf{Parámetros:} todos reciben números (longitudes o conteos), no puntos.
+\textit{¿Cuándo usar?} \texttt{pick\_area}, \texttt{puntos\_en\_borde} y \texttt{puntos\_interiores}: contar puntos de una grilla entera dentro de un polígono de vértices enteros, o hallar su área a partir de esos conteos. \texttt{heron}: área de un triángulo conociendo solo sus 3 lados (sin coordenadas). \texttt{es\_triangulo}: verifica la desigualdad triangular antes de usar \texttt{heron}. \textbf{Parámetros:} \texttt{pick\_area}, \texttt{heron} y \texttt{es\_triangulo} reciben números (conteos o longitudes); las dos funciones de puntos reciben la lista de vértices \texttt{(x, y)} en orden.
+
+\textbf{Teorema de Pick.} Sea un polígono simple cuyos vértices tienen coordenadas enteras. Si \(I\) es la cantidad de puntos enteros estrictamente en su interior y \(B\) la cantidad de puntos enteros sobre su borde, el área es
 \[
-\text{Área (Pick)} = I + \frac{B}{2} - 1
+A = I + \frac{B}{2} - 1
 \]
+Para contar \(B\), cada arista aporta \(\gcd(|\Delta x|, |\Delta y|)\) puntos (sin contar uno de sus extremos), y \(B\) es la suma sobre todas las aristas. Con el área por la fórmula del cordón (ver \textit{Geometria computacional (avanzada)}) se despeja \(I = A - B/2 + 1\).
+
+\textbf{Fórmula de Herón.} Si un triángulo tiene lados \(a, b, c\) y semiperímetro \(s = \dfrac{a+b+c}{2}\), su área es
+\[
+A = \sqrt{s\,(s-a)(s-b)(s-c)}
+\]
+
+\textbf{Existencia de un triángulo.} Tres longitudes \(a, b, c\) forman un triángulo (no degenerado) si y solo si se cumplen las tres desigualdades
+\[
+a < b + c, \qquad b < a + c, \qquad c < a + b
+\]
+que equivalen a que el lado mayor sea estrictamente menor que la suma de los otros dos.

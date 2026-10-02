@@ -32,6 +32,12 @@ def fibonacci(n):
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
+    assert fibonacci(10) == 55
+    assert matrix_pow([[1, 1], [1, 0]], 5) == [[8, 5], [5, 3]]
+    # los resultados se calculan modulo MOD
+    assert fibonacci(50) == 12586269025 % MOD
+    # --- fin ejemplo ---
     esperados = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
     for i, e in enumerate(esperados):
         assert fibonacci(i) == e, (i, fibonacci(i), e)

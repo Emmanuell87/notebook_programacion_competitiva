@@ -13,4 +13,6 @@
 \end{tabular}
 \end{center}
 
+Las identidades entre estos operadores (conmutatividad, distributividad, De Morgan, propiedades de XOR, relación con la suma, etc.) están en la sección \textit{Propiedades e Identidades}.
+
 \textbf{Potenciación binaria (exponenciación rápida con \texttt{>{}>}):} no se repite aquí el código completo — ya está como \texttt{modpow} (Teoría de Números) y \texttt{power} (Divide y Vencerás). La idea es exactamente la de esta sección: recorrer el exponente \textbf{bit a bit} con \texttt{e \&\ 1} (¿el bit actual está encendido?) y \texttt{e >{}>= 1} (avanzar al siguiente bit), elevando la base al cuadrado en cada paso.

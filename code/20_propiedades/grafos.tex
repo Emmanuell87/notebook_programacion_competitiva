@@ -1,0 +1,30 @@
+Notación: \(V\) = número de vértices, \(E\) = número de aristas, \(C\) = número de componentes conexas, \(\deg(v)\) = grado de \(v\). Se consideran grafos simples (sin aristas repetidas ni lazos).
+
+\textbf{Grados y cantidad de aristas.}
+\begin{props}
+  \item \textbf{Lema del apretón de manos} (no dirigido): \(\sum_v \deg(v) = 2E\). En consecuencia, la cantidad de vértices de grado impar es siempre par.
+  \item Máximo de aristas: \(\dfrac{V(V-1)}{2}\) en un grafo no dirigido y \(V(V-1)\) en uno dirigido.
+  \item Un grafo conexo tiene \(E \ge V - 1\).
+  \item \textbf{Número ciclomático:} \(E - V + C\) es la cantidad de ciclos independientes. Es 0 si y solo si el grafo no tiene ciclos.
+\end{props}
+
+\textbf{Árboles y bosques.}
+\begin{props}
+  \item Un grafo con \(V\) vértices es un árbol \(\iff\) es conexo y acíclico \(\iff\) es conexo con \(E = V-1\) \(\iff\) es acíclico con \(E = V-1\) \(\iff\) existe un único camino simple entre cada par de vértices.
+  \item Un bosque con \(C\) componentes tiene \(E = V - C\).
+  \item \textbf{Fórmula de Cayley:} existen \(V^{\,V-2}\) árboles etiquetados con \(V\) vértices (equivale a los árboles de expansión del grafo completo \(K_V\)).
+\end{props}
+
+\textbf{Grafos planares.}
+\begin{props}
+  \item \textbf{Teorema (fórmula) de Euler:} en un grafo planar conexo dibujado sin cruces, con \(F\) caras (contando la exterior), \(V - E + F = 2\). Con \(C\) componentes: \(V - E + F = 1 + C\).
+  \item Si es planar simple con \(V \ge 3\): \(E \le 3V - 6\). Si además no tiene triángulos (por ejemplo, si es bipartito): \(E \le 2V - 4\).
+\end{props}
+
+\textbf{Otras propiedades.}
+\begin{props}
+  \item \textbf{Bipartito} \(\iff\) se puede 2-colorear \(\iff\) no tiene ciclos de longitud impar.
+  \item \textbf{DAG:} un grafo dirigido admite orden topológico \(\iff\) no tiene ciclos.
+  \item \textbf{Circuito euleriano} (recorre cada arista exactamente una vez y vuelve al inicio), en un grafo conexo no dirigido: existe \(\iff\) todos los vértices tienen grado par. Un \textbf{camino euleriano} (sin volver) existe \(\iff\) hay exactamente 0 o 2 vértices de grado impar; si son 2, el camino empieza en uno y termina en el otro.
+  \item En un grafo dirigido, el circuito euleriano exige que el grado de entrada sea igual al grado de salida en todos los vértices (y que las aristas estén conectadas).
+\end{props}

@@ -69,6 +69,12 @@ def fuerza_bruta_a_lo_sumo_k(arr, k):
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
+    # subarreglo contiguo mas largo con suma <= 5 (elementos positivos)
+    assert subarreglo_mas_largo_suma_max([3, 1, 2, 1, 1], 5) == 4
+    # cantidad de subarreglos con a lo sumo 2 valores distintos
+    assert contar_subarreglos_a_lo_sumo_k_distintos([1, 2, 1, 2, 3], 2) == 12
+    # --- fin ejemplo ---
     import random
     random.seed(1)
     for _ in range(100):

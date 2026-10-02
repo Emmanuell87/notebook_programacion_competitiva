@@ -32,6 +32,12 @@ def quickselect_inplace(arr, k):
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
+    arr = [7, 10, 4, 3, 20, 15]
+    assert quickselect_inplace(arr[:], 0) == 3    # el menor (k es 0-indexado)
+    assert quickselect_inplace(arr[:], 2) == 7    # el 3er menor
+    assert quickselect_inplace(arr[:], 5) == 20   # el mayor
+    # --- fin ejemplo ---
     arr = [7, 10, 4, 3, 20, 15]
     ordenado = sorted(arr)
     for k in range(len(arr)):

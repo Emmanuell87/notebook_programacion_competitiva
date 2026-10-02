@@ -15,6 +15,7 @@ Para agregar un algoritmo nuevo:
     3. Vuelve a correr este script.
 """
 
+import ast
 import subprocess
 import sys
 from pathlib import Path
@@ -91,18 +92,99 @@ def parsear_contents(ruta):
 
             ruta_archivo, titulo_sub = linea.split("\t", 1)
             titulo_sub = titulo_sub.strip()
+            # " :: texto" al final del titulo = complejidad (LaTeX tal cual)
+            complejidad = None
+            if " :: " in titulo_sub:
+                titulo_sub, complejidad = [x.strip() for x in titulo_sub.split(" :: ", 1)]
             # titulo vacio o "-" = continuar en la misma subseccion anterior,
             # sin crear ningun encabezado (util cuando una subseccion del
             # documento principal mezcla formulas (.tex) y codigo (.py))
             if titulo_sub == "-" or not titulo_sub:
-                bloques.append(("archivo", ruta_archivo.strip(), None, False))
+                bloques.append(("archivo", ruta_archivo.strip(), None, False, complejidad))
             elif titulo_sub.startswith("~"):
                 # etiqueta chica sin numerar (ver docstring)
-                bloques.append(("archivo", ruta_archivo.strip(), titulo_sub[1:].strip(), True))
+                bloques.append(("archivo", ruta_archivo.strip(), titulo_sub[1:].strip(), True, complejidad))
             else:
-                bloques.append(("archivo", ruta_archivo.strip(), titulo_sub, False))
+                bloques.append(("archivo", ruta_archivo.strip(), titulo_sub, False, complejidad))
 
     return bloques
+
+
+MAX_LINEAS_EJEMPLO = 6
+MARCA_INI_EJEMPLO = "# --- ejemplo ---"
+MARCA_FIN_EJEMPLO = "# --- fin ejemplo ---"
+
+
+def _fuente_ejemplo(texto, nodo, lineas):
+    """Texto de una sentencia del bloque de pruebas: los assert se muestran
+    como la expresion sola (sin 'assert' ni mensaje), con su comentario."""
+    if isinstance(nodo, ast.Assert):
+        expr = ast.get_source_segment(texto, nodo.test)
+        resto = lineas[nodo.end_lineno - 1][nodo.end_col_offset:]
+        return expr + resto
+    return "\n".join(lineas[nodo.lineno - 1:nodo.end_lineno])
+
+
+def extraer_ejemplo(codigo_completo):
+    """Arma un ejemplo de uso a partir del bloque 'if __name__ == ...' de un
+    archivo. Si el bloque tiene una region entre MARCA_INI_EJEMPLO y
+    MARCA_FIN_EJEMPLO, se usa esa region completa. Si no, se toman
+    sentencias simples (asignaciones, llamadas, assert) desde el principio,
+    hasta el primer bucle/random/import o hasta MAX_LINEAS_EJEMPLO lineas.
+    Los assert se muestran como la expresion sola. Devuelve None si no
+    queda ningun assert."""
+    marcador = '\nif __name__ == "__main__":'
+    if marcador not in codigo_completo:
+        return None
+    cuerpo = codigo_completo.split(marcador, 1)[1]
+    lineas = [l[4:] if l.startswith("    ") else l for l in cuerpo.splitlines()]
+
+    explicito = False
+    if MARCA_INI_EJEMPLO in lineas and MARCA_FIN_EJEMPLO in lineas:
+        a = lineas.index(MARCA_INI_EJEMPLO)
+        b = lineas.index(MARCA_FIN_EJEMPLO)
+        lineas = lineas[a + 1:b]
+        explicito = True
+
+    texto = "\n".join(lineas)
+    try:
+        arbol = ast.parse(texto)
+    except SyntaxError:
+        return None
+
+    salida = []
+    largo_hasta_ultimo_assert = 0
+    previo = 0  # ultima linea (1-indexada) ya consumida
+    for nodo in arbol.body:
+        if not explicito and not isinstance(nodo, (ast.Assign, ast.AnnAssign, ast.Expr, ast.Assert)):
+            break
+        if not explicito and any(
+            isinstance(n, ast.Name) and n.id in ("random", "time") for n in ast.walk(nodo)
+        ):
+            break
+        if isinstance(nodo, ast.Expr):
+            llamada = nodo.value
+            if isinstance(llamada, ast.Call) and isinstance(llamada.func, ast.Name) and llamada.func.id == "print":
+                previo = nodo.end_lineno
+                continue
+        comentarios = [l for l in lineas[previo:nodo.lineno - 1] if l.strip().startswith("#")]
+        fuente = _fuente_ejemplo(texto, nodo, lineas)
+        bloque = comentarios + fuente.split("\n")
+        if not explicito:
+            # tope blando: se corta antes de pasarse, siempre que ya haya un assert
+            if largo_hasta_ultimo_assert and len(salida) + len(bloque) > MAX_LINEAS_EJEMPLO:
+                break
+            if len(salida) + len(bloque) > MAX_LINEAS_EJEMPLO + 4:
+                break
+        salida.extend(bloque)
+        previo = nodo.end_lineno
+        if isinstance(nodo, ast.Assert):
+            largo_hasta_ultimo_assert = len(salida)
+    if not largo_hasta_ultimo_assert:
+        return None
+    # solo hasta el ultimo assert: sin preparativos ni comentarios sueltos
+    salida = salida[:largo_hasta_ultimo_assert]
+    return "\n".join(salida)
 
 
 def construir_contenido_tex(bloques):
@@ -116,7 +198,7 @@ def construir_contenido_tex(bloques):
             _, titulo = bloque
             partes.append(f"\\section{{{escapar_latex(titulo)}}}\n")
         else:
-            _, ruta_rel, titulo_sub, es_mini = bloque
+            _, ruta_rel, titulo_sub, es_mini, complejidad = bloque
             ruta_completa = CODE_DIR / ruta_rel
 
             if titulo_sub is not None:
@@ -124,9 +206,11 @@ def construir_contenido_tex(bloques):
                     # etiqueta chica sin numerar: distingue funciones
                     # dentro de un mismo grupo de archivos pegados, sin
                     # crear una entrada nueva en el indice.
-                    partes.append(f"\\textit{{\\texttt{{{escapar_latex(titulo_sub)}}}}}")
+                    partes.append(f"{{\\raggedright\\textit{{\\texttt{{{escapar_latex(titulo_sub)}}}}}\\par}}")
                 else:
                     partes.append(f"\\subsection{{{escapar_latex(titulo_sub)}}}")
+            if complejidad:
+                partes.append(f"{{\\raggedright\\small\\textit{{Complejidad:}} {complejidad}\\par}}")
 
             if ruta_completa.suffix == ".tex":
                 # contenido conceptual (formulas, texto) ya escrito en LaTeX: se inserta tal cual
@@ -134,14 +218,23 @@ def construir_contenido_tex(bloques):
                 partes.append(contenido + "\n")
             else:
                 # codigo: se envuelve en lstlisting con resaltado de sintaxis.
-                codigo = ruta_completa.read_text(encoding="utf-8").rstrip("\n")
+                completo = ruta_completa.read_text(encoding="utf-8").rstrip("\n")
                 marcador = '\nif __name__ == "__main__":'
-                if marcador in codigo:
-                    codigo = codigo.split(marcador)[0].rstrip("\n")
+                codigo = completo.split(marcador)[0].rstrip("\n")
 
                 partes.append("\\begin{lstlisting}[language=Python]")
                 partes.append(codigo)
                 partes.append("\\end{lstlisting}\n")
+
+                # ejemplo de uso, sacado del bloque de pruebas del archivo
+                ejemplo = extraer_ejemplo(completo)
+                if ejemplo:
+                    partes.append(
+                        "\\begin{lstlisting}[language=Python,frame=none,numbers=none,"
+                        "backgroundcolor=\\color{gray!12},aboveskip=0pt,belowskip=6pt]"
+                    )
+                    partes.append(ejemplo)
+                    partes.append("\\end{lstlisting}\n")
 
     return "\n".join(partes)
 

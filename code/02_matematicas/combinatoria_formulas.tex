@@ -1,28 +1,41 @@
-\paragraph{Combinaciones (sin repetición).}
+\paragraph{Permutaciones (sin repetición).} Cantidad de formas de ordenar \(r\) objetos escogidos entre \(n\) objetos distintos; el orden importa.
 \[
-\binom{n}{k} = \frac{n!}{k!(n-k)!}
+P(n,r)=\frac{n!}{(n-r)!}, \qquad P(n,n)=n!
 \]
 
-\paragraph{Combinaciones con repetición (multiconjuntos).}
-\textit{¿Cuándo usar?} Elegir \(k\) elementos de \(n\) tipos, pudiendo repetir tipos y sin importar el orden (ej.: escoger 5 frutas de 3 tipos disponibles, repitiendo tipos).
+\paragraph{Combinaciones (sin repetición).} Cantidad de formas de elegir \(r\) objetos entre \(n\) distintos sin importar el orden.
+\[
+C(n,r)=\binom{n}{r}=\frac{n!}{r!\,(n-r)!}
+\]
+Propiedades: \(\binom{n}{r}=\binom{n}{n-r}\); identidad de Pascal \(\binom{n}{r}=\binom{n-1}{r-1}+\binom{n-1}{r}\); \(\sum_{r=0}^{n}\binom{n}{r}=2^n\).
+
+\paragraph{Permutaciones con repetición.} Ordenar \(n\) objetos donde hay \(n_1\) iguales de un tipo, \(n_2\) iguales de otro, \dots, con \(n_1+\cdots+n_k=n\):
+\[
+\frac{n!}{n_1!\,n_2!\cdots n_k!}
+\]
+Ejemplo: los anagramas de \texttt{AABC} son \(4!/2! = 12\). Si en cambio se arman secuencias de largo \(r\) con \(n\) símbolos que se pueden repetir libremente, hay \(n^r\).
+
+\paragraph{Combinaciones con repetición (multiconjuntos).} \textit{¿Cuándo usar?} Elegir \(k\) elementos de \(n\) tipos, pudiendo repetir tipos y sin importar el orden (ej.: escoger 5 frutas de 3 tipos disponibles, repitiendo tipos).
 \[
 \left(\!\!\binom{n}{k}\!\!\right) = \binom{n+k-1}{k}
 \]
 
-\paragraph{Estrellas y Barras (soluciones de \(x_1+\cdots+x_m=S\), \(x_i\ge 0\)).}
-\textit{¿Cuándo usar?} Contar de cuántas formas se reparte una cantidad \(S\) (indistinguible) entre \(m\) "cajas" (variables) enteras no negativas. \textbf{Parámetros:} \(S\) = total a repartir, \(m\) = número de variables/cajas.
-\[
-\# = \binom{S+m-1}{m-1}
-\]
+\paragraph{Estrellas y barras.} \textit{¿Cuándo usar?} Contar las soluciones enteras de \(x_1+\cdots+x_m=S\), es decir, repartir \(S\) unidades iguales entre \(m\) cajas. \textbf{Parámetros:} \(S\) = total a repartir, \(m\) = número de variables.
+\begin{props}
+  \item \(x_i \ge 0\): \(\displaystyle\binom{S+m-1}{m-1}\)
+  \item \(x_i \ge 1\): \(\displaystyle\binom{S-1}{m-1}\)
+  \item \(x_i \ge a_i\) (cotas inferiores distintas): se sustituye \(y_i = x_i - a_i \ge 0\), y la ecuación queda \(y_1+\cdots+y_m = S-\sum a_i\). Hay \(\displaystyle\binom{S-\sum a_i+m-1}{m-1}\) soluciones (0 si \(S<\sum a_i\)).
+\end{props}
 
-\paragraph{Permutaciones.}
-\[
-P(n,k)=\frac{n!}{(n-k)!}, \qquad P(n)=n!, \qquad
-\text{(con repetición)}\quad \frac{n!}{n_1!\cdots n_r!}
-\]
-
-\paragraph{Números de Catalan.}
-\textit{¿Cuándo usar?} Cuentan secuencias de paréntesis balanceados, formas de triangular un polígono, árboles binarios distintos con \(n\) nodos, caminos que no cruzan la diagonal, etc. \textbf{Parámetros:} \(n\) = tamaño del problema (ej. cantidad de pares de paréntesis).
+\paragraph{Números de Catalan.} \textit{¿Cuándo usar?} Cuentan estructuras ``bien anidadas''. \textbf{Parámetros:} \(n\) = tamaño del problema (ej. cantidad de pares de paréntesis). Primeros valores: \(1, 1, 2, 5, 14, 42, 132\).
 \[
 C_n=\frac{1}{n+1}\binom{2n}{n}
 \]
+Recurrencias: \(C_0 = 1\), \(\quad C_{n+1}=\dfrac{4n+2}{n+2}\,C_n\), \(\quad C_{n+1}=\displaystyle\sum_{i=0}^{n} C_i\,C_{n-i}\). \(C_n\) cuenta:
+\begin{props}
+  \item secuencias de \(n\) pares de paréntesis correctamente balanceados;
+  \item árboles binarios distintos con \(n\) nodos;
+  \item formas de triangular un polígono convexo de \(n+2\) lados con diagonales que no se cruzan;
+  \item caminos en una grilla \(n \times n\) desde una esquina a la opuesta, avanzando solo arriba o a la derecha, sin cruzar la diagonal;
+  \item formas de poner paréntesis en un producto de \(n+1\) factores. Con 4 factores (\(n=3\)) son 5: \(((ab)c)d\), \((a(bc))d\), \((ab)(cd)\), \(a((bc)d)\), \(a(b(cd))\).
+\end{props}

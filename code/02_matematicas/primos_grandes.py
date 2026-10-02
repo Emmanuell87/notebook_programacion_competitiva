@@ -61,6 +61,11 @@ def factorizar(n):
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
+    assert es_primo(10 ** 9 + 7) is True
+    assert es_primo(10 ** 9 + 8) is False
+    assert sorted(factorizar(600851475143)) == [71, 839, 1471, 6857]
+    # --- fin ejemplo ---
     for p in [2, 3, 5, 7, 11, 97, 7919, 104729, 999999937, 2**31 - 1]:
         assert es_primo(p), p
     for c in [1, 4, 6, 100, 999999999, (2**31 - 1) * 3, 910222067227]:

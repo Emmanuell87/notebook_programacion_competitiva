@@ -1,7 +1,3 @@
-# Propiedades: a^a=0, a^0=a, conmutativo y asociativo. De ahi sale una
-# identidad util: si a^b=c, entonces a^c=b (y b^c=a) -- sirve para
-# "despejar" un valor cuando conoces el XOR de a pares.
-
 from functools import reduce
 
 
@@ -23,6 +19,11 @@ def pref_xor(a):
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
+    assert encontrar_unico([4, 1, 2, 1, 2]) == 4
+    p = pref_xor([3, 5, 7, 9])
+    assert p[3] ^ p[1] == 5 ^ 7   # XOR del rango [1, 2]
+    # --- fin ejemplo ---
     import random
     random.seed(0)
     for _ in range(100):

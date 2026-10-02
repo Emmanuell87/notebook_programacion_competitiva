@@ -17,6 +17,9 @@ def submascaras(mask):
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
+    assert list(submascaras(0b101)) == [0b101, 0b100, 0b001, 0b000]
+    # --- fin ejemplo ---
     for mask in [0, 1, 5, 6, 7, 13, 255]:
         subs = list(submascaras(mask))
         esperado = [s for s in range(mask, -1, -1) if (s & mask) == s]

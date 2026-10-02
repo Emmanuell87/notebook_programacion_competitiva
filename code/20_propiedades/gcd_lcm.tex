@@ -1,0 +1,34 @@
+En Python: \texttt{math.gcd(a, b)} y \texttt{math.lcm(a, b)} (Python 3.9+, ambos aceptan más de dos argumentos). Todas las propiedades suponen enteros positivos.
+
+\textbf{Cálculo y relación entre ambos.}
+\begin{props}
+  \item \(\gcd(a,b) = \gcd(b,\ a \bmod b)\), \(\quad \gcd(a,0) = a\).
+  \item \(\gcd(a,b) = \gcd(a + kb,\ b)\) para cualquier entero \(k\).
+  \item \(\gcd(a,b) \cdot \operatorname{lcm}(a,b) = a \cdot b\). Si \(\gcd(a,b)=1\), entonces \(\operatorname{lcm}(a,b) = ab\).
+  \item Con factorización en primos: \(\gcd\) toma el \textbf{mínimo} de cada exponente y \(\operatorname{lcm}\) el \textbf{máximo}.
+  \item Si \(a \mid m\) y \(b \mid m\), entonces \(\operatorname{lcm}(a,b) \mid m\).
+\end{props}
+
+\textbf{Estructura.}
+\begin{props}
+  \item \textbf{Conmutativos y asociativos:} \(\gcd(a,b,c) = \gcd(\gcd(a,b),\,c)\), y lo mismo para \(\operatorname{lcm}\).
+  \item \(\gcd(ka,\,kb) = k \cdot \gcd(a,b)\), \(\quad \operatorname{lcm}(ka,\,kb) = k \cdot \operatorname{lcm}(a,b)\).
+  \item \(\gcd(a^n,\, b^n) = \gcd(a,b)^n\).
+  \item \textbf{Distributivas:}
+  \[\gcd(a,\ \operatorname{lcm}(b,c)) = \operatorname{lcm}(\gcd(a,b),\ \gcd(a,c))\]
+  \[\operatorname{lcm}(a,\ \gcd(b,c)) = \gcd(\operatorname{lcm}(a,b),\ \operatorname{lcm}(a,c))\]
+\end{props}
+
+\textbf{Coprimos y Bézout.}
+\begin{props}
+  \item \textbf{Bézout:} existen enteros \(x, y\) con \(ax + by = \gcd(a,b)\), y los valores que se pueden formar como \(ax + by\) son exactamente los múltiplos de \(\gcd(a,b)\).
+  \item Si \(\gcd(a,b) = 1\) y \(\gcd(a,c) = 1\), entonces \(\gcd(a,\, bc) = 1\).
+  \item \textbf{Lema de Euclides:} si \(\gcd(a,b)=1\) y \(a \mid bc\), entonces \(a \mid c\).
+\end{props}
+
+\textbf{Casos especiales útiles.}
+\begin{props}
+  \item \(\gcd(2^a - 1,\ 2^b - 1) = 2^{\gcd(a,b)} - 1\).
+  \item \textbf{Fibonacci} (\(F_1 = F_2 = 1\)): \(\gcd(F_a,\, F_b) = F_{\gcd(a,b)}\).
+  \item El \(\gcd\) de los prefijos de un arreglo solo puede \textbf{cambiar} \(O(\log \max)\) veces: cada cambio es un divisor propio del valor anterior, es decir, a lo sumo su mitad. Útil para agrupar subarreglos por su \(\gcd\).
+\end{props}

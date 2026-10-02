@@ -66,6 +66,13 @@ def fuerza_bruta(cost):
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
+    # cost[i][j] = costo de asignar el trabajador i a la tarea j
+    cost = [[4, 1, 3], [2, 0, 5], [3, 2, 2]]
+    total, asig = hungarian(cost)  # asig[i] = tarea que le toca al trabajador i
+    assert total == 5
+    assert asig == [1, 0, 2]
+    # --- fin ejemplo ---
     import random
     random.seed(0)
     for _ in range(20):

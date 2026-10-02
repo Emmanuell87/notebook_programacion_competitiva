@@ -59,6 +59,7 @@ class LCAEulerTour:
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
     n = 7
     grafo = [[] for _ in range(n)]
     aristas = [(0, 1), (0, 2), (1, 3), (1, 4), (2, 5), (2, 6)]
@@ -71,4 +72,5 @@ if __name__ == "__main__":
     assert et.lca(3, 5) == 0
     assert et.lca(5, 6) == 2
     assert et.lca(1, 3) == 1
+    # --- fin ejemplo ---
     print("OK")

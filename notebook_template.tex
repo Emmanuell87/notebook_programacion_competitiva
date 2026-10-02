@@ -37,6 +37,17 @@
     {ñ}{{\~n}}1 {Ñ}{{\~N}}1,
 }
 
+% notacion de operaciones bit a bit para las secciones de propiedades
+\newcommand{\band}{\mathbin{\&}}
+\newcommand{\bor}{\mathbin{|}}
+\newcommand{\bxor}{\oplus}
+\newcommand{\bnot}{\mathord{\sim}}
+
+% lista compacta para listas largas de identidades
+\newenvironment{props}
+  {\begin{itemize}\setlength{\itemsep}{1pt}\setlength{\topsep}{2pt}\setlength{\parsep}{0pt}}
+  {\end{itemize}}
+
 % reduce el espacio extra que titlesec/parrafos dejan antes de cada subsection
 \titlespacing*{\subsection}{0pt}{6pt}{3pt}
 

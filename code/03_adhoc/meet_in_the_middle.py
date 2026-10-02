@@ -35,6 +35,10 @@ def fuerza_bruta(arr, target):
 
 
 if __name__ == "__main__":
+    # --- ejemplo ---
+    # subconjuntos de [1..6] con suma 7: {1,6}, {2,5}, {3,4}, {1,2,4}
+    assert contar_subsets_suma([1, 2, 3, 4, 5, 6], 7) == 4
+    # --- fin ejemplo ---
     arr = [1, 2, 3, 4, 5]
     for target in range(0, 16):
         assert contar_subsets_suma(arr, target) == fuerza_bruta(arr, target), target

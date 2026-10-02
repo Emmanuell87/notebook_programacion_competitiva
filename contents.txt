@@ -14,6 +14,14 @@
 #                      de un mismo grupo de archivos pegados, ej.:
 #                      "~orientacion()"
 #
+# Al final del titulo se puede agregar " :: texto" para mostrar una linea
+# "Complejidad: texto" (LaTeX tal cual, ej.: "Dijkstra :: \(O(E \log V)\)").
+#
+# Los .py muestran, bajo el codigo, un bloque gris con un ejemplo de uso
+# sacado del bloque "if __name__ ...": por defecto los primeros assert
+# simples (mostrados como "expresion == valor"); o, si el archivo lo
+# marca, la region entre "# --- ejemplo ---" y "# --- fin ejemplo ---".
+#
 # El archivo referenciado puede ser:
 #   - un .py  -> se muestra como codigo resaltado (se quita el bloque
 #                "if __name__ == '__main__':" automaticamente)
@@ -26,158 +34,167 @@
 01_tips/complejidad_esperada.tex	Complejidad esperada segun las restricciones
 01_tips/lectura_rapida.py	Lectura rapida de datos en Python
 01_tips/escritura_rapida.py	Escritura rapida de resultados en Python
-01_tips/recursion_profunda.py	Recursion profunda (limite y alternativa iterativa)
+01_tips/recursion_profunda.py	Recursion profunda (limite y alternativa iterativa) :: \(O(V+E)\) en ambas versiones
 01_tips/atajos.py	Atajos utiles y estructuras frecuentes
 01_tips/recomendaciones.tex	Recomendaciones generales
+01_tips/checklist_errores.tex	Checklist: que revisar ante WA, TLE, RTE y MLE
 
 [Formulas Matematicas]
 02_matematicas/sumas_sucesiones.tex	Sumas y sucesiones clasicas
 02_matematicas/fibonacci_binet.tex	Fibonacci (formula de Binet)
 02_matematicas/combinatoria_formulas.tex	Combinatoria
-02_matematicas/combinatoria.py	~combos_con_repeticion(), estrellas_y_barras(), catalan()
+02_matematicas/combinatoria.py	~combos_con_repeticion(), estrellas_y_barras(), estrellas_y_barras_con_minimos(), catalan()
 02_matematicas/teoria_numeros_lcm.tex	Teoria de Numeros
-02_matematicas/modpow_phi.py	~modpow(), modinv_prime(), phi()
-02_matematicas/egcd_modinv.py	~egcd(), modinv()
-02_matematicas/crt.py	~crt()
-02_matematicas/primos_grandes.py	~es_primo(), pollard_rho(), factorizar()
+02_matematicas/modpow_phi.py	~modpow(), modinv_prime(), phi() :: modpow \(O(\log e)\); phi \(O(\sqrt{n})\)
+02_matematicas/egcd_modinv.py	~egcd(), modinv() :: \(O(\log \min(a,b))\)
+02_matematicas/crt.py	~crt() :: \(O(\log \min(m_1,m_2))\)
+02_matematicas/factorizacion.py	~factorizacion(), factorizacion_con_exponentes() :: \(O(\sqrt{n})\)
+02_matematicas/primos_grandes.py	~es_primo(), pollard_rho(), factorizar() :: es\_primo \(O(k \log^2 n)\) con \(k\) testigos; pollard\_rho \(\approx O(n^{1/4})\) esperado
 02_matematicas/distancias_formulas.tex	Distancias y productos vectoriales
-02_matematicas/dot_cross.py	~dot(), cross()
+02_matematicas/dot_cross.py	~dot(), cross() :: \(O(1)\)
 02_matematicas/geometria_elemental_formula.tex	Geometria elemental (Pick, Heron, existencia)
-02_matematicas/pick_heron.py	~pick_area(), heron(), es_triangulo()
+02_matematicas/pick_heron.py	~pick_area(), puntos_en_borde(), puntos_interiores(), heron(), es_triangulo() :: puntos de borde/interior \(O(n \log C)\) con \(n\) vértices y coordenadas hasta \(C\); el resto \(O(1)\)
 02_matematicas/geo_computacional_intro.tex	Geometria computacional (avanzada)
-02_matematicas/orientacion.py	~orientacion()
-02_matematicas/area_poligono.py	~area_poligono()
-02_matematicas/en_segmento.py	~en_segmento()
-02_matematicas/segmentos_intersectan.py	~segmentos_se_intersectan()
-02_matematicas/dist_punto_segmento.py	~dist_punto_segmento()
-02_matematicas/punto_en_poligono.py	~punto_en_poligono()
+02_matematicas/orientacion.py	~orientacion() :: \(O(1)\)
+02_matematicas/area_poligono.py	~area_poligono() :: \(O(n)\)
+02_matematicas/en_segmento.py	~en_segmento() :: \(O(1)\)
+02_matematicas/segmentos_intersectan.py	~segmentos_se_intersectan() :: \(O(1)\)
+02_matematicas/dist_punto_segmento.py	~dist_punto_segmento() :: \(O(1)\)
+02_matematicas/punto_en_poligono.py	~punto_en_poligono() :: \(O(n)\)
+
+[Propiedades e Identidades]
+20_propiedades/modular.tex	Aritmetica modular
+20_propiedades/bits_algebra.tex	Algebra de AND, OR, XOR y NOT
+20_propiedades/bits_aritmetica.tex	Bits: relacion con la aritmetica, submascaras, shifts y precedencia
+20_propiedades/gcd_lcm.tex	gcd y lcm
+20_propiedades/grafos.tex	Grafos
 
 [Algoritmos Ad-Hoc]
-03_adhoc/contar_divisores.py	Cantidad de divisores
-03_adhoc/euclides_gcd.py	Algoritmo de Euclides y MCM
-03_adhoc/criba.py	Numeros primos y Criba de Eratostenes
-03_adhoc/boyer_moore.py	Elemento dominante (Boyer-Moore)
-03_adhoc/z_function.py	Algoritmo Z (Z-function)
-03_adhoc/diofantica.py	Ecuaciones Diofanticas Lineales
-03_adhoc/meet_in_the_middle.py	Meet-in-the-Middle
+03_adhoc/contar_divisores.py	Cantidad de divisores :: \(O(\sqrt{n})\)
+03_adhoc/euclides_gcd.py	Algoritmo de Euclides y MCM :: \(O(\log \min(a,b))\)
+03_adhoc/criba.py	Numeros primos y Criba de Eratostenes :: \(O(n \log \log n)\)
+03_adhoc/boyer_moore.py	Elemento dominante (Boyer-Moore) :: \(O(n)\) tiempo, \(O(1)\) memoria
+03_adhoc/z_function.py	Algoritmo Z (Z-function) :: \(O(|s|)\); búsqueda de un patrón \(O(|t|+|p|)\)
+03_adhoc/diofantica.py	Ecuaciones Diofanticas Lineales :: \(O(\log \min(a,b))\)
+03_adhoc/meet_in_the_middle.py	Meet-in-the-Middle :: \(O(2^{n/2}\, n)\)
 03_adhoc/p_vs_np.tex	Problemas P y NP
 
 [Busqueda Exhaustiva]
-04_busqueda_exhaustiva/permutaciones.py	Busqueda Exhaustiva
-04_busqueda_exhaustiva/tsp_fuerza_bruta.py	Problema del Agente Viajero (TSP)
-04_busqueda_exhaustiva/cuadrados_magicos.py	Cuadrados Magicos
-04_busqueda_exhaustiva/es_bipartito.py	Particion y Coloreado de Grafos
-04_busqueda_exhaustiva/tsp_branch_and_bound.py	Ramificacion y Poda (Branch and Bound)
-04_busqueda_exhaustiva/generar_subconjuntos.py	Generacion de Subconjuntos
+04_busqueda_exhaustiva/permutaciones.py	Busqueda Exhaustiva :: \(O(n! \cdot n)\)
+04_busqueda_exhaustiva/tsp_fuerza_bruta.py	Problema del Agente Viajero (TSP) :: \(O(n! \cdot n)\)
+04_busqueda_exhaustiva/cuadrados_magicos.py	Cuadrados Magicos :: \(O(n^2)\)
+04_busqueda_exhaustiva/es_bipartito.py	Particion y Coloreado de Grafos :: \(O(V+E)\)
+04_busqueda_exhaustiva/tsp_branch_and_bound.py	Ramificacion y Poda (Branch and Bound) :: peor caso \(O(n!)\); la poda lo reduce en la práctica
+04_busqueda_exhaustiva/generar_subconjuntos.py	Generacion de Subconjuntos :: \(O(2^n \cdot n)\)
 
 [Algoritmos Voraces]
 05_voraces/cambio_greedy.py	Cambio de Monedas (Greedy)
-05_voraces/knapsack_fraccional.py	Knapsack Fraccional (Mochila Fraccional)
-05_voraces/seleccionar_actividades.py	Programacion de Actividades (Activity Selection)
-05_voraces/cubrir_intervalo.py	Cobertura de Intervalo (Interval Covering)
-05_voraces/programar_trabajos.py	Programacion de Procesos Unitarios (Job Scheduling)
-05_voraces/swap_count.py	Minimos Intercambios Adyacentes para Balancear Parentesis
-05_voraces/huffman.py	Codigo de Huffman (Construccion Manual del Arbol)
-05_voraces/prim.py	Algoritmo de Prim (Arbol de expansion minima)
-05_voraces/edmonds_karp.py	Algoritmo de Edmonds-Karp (Maximo Flujo)
+05_voraces/knapsack_fraccional.py	Knapsack Fraccional (Mochila Fraccional) :: \(O(n \log n)\)
+05_voraces/seleccionar_actividades.py	Programacion de Actividades (Activity Selection) :: \(O(n \log n)\)
+05_voraces/cubrir_intervalo.py	Cobertura de Intervalo (Interval Covering) :: \(O(n \log n)\)
+05_voraces/programar_trabajos.py	Programacion de Procesos Unitarios (Job Scheduling) :: \(O(n \log n + n D)\), con \(D\) = plazo máximo
+05_voraces/swap_count.py	Minimos Intercambios Adyacentes para Balancear Parentesis :: \(O(n)\)
+05_voraces/huffman.py	Codigo de Huffman (Construccion Manual del Arbol) :: \(O(n \log n)\)
+05_voraces/prim.py	Algoritmo de Prim (Arbol de expansion minima) :: \(O(E \log V)\)
+05_voraces/edmonds_karp.py	Algoritmo de Edmonds-Karp (Maximo Flujo) :: \(O(V E^2)\)
 
 [Recorridos en Grafos]
-06_grafos/bfs.py	Busqueda en Anchura (BFS)
-06_grafos/dfs.py	Busqueda en Profundidad (DFS)
-06_grafos/topo_sort.py	Orden Topologico (Kahn)
-06_grafos/dijkstra.py	Algoritmo de Dijkstra
-06_grafos/componentes_conexas.py	Componentes Conexas (usando DFS)
-06_grafos/flood_fill.py	Flood Fill en Grilla (BFS)
-06_grafos/ciclo_dirigido.py	Deteccion de ciclo en grafos dirigidos
-06_grafos/ciclo_nodirigido.py	Deteccion de ciclo en grafos no dirigidos
-06_grafos/scc_kosaraju.py	Componentes Fuertemente Conectadas (Kosaraju)
-06_grafos/articulaciones_y_puentes.py	Puntos de articulacion y puentes (Tarjan)
+06_grafos/bfs.py	Busqueda en Anchura (BFS) :: \(O(V+E)\)
+06_grafos/dfs.py	Busqueda en Profundidad (DFS) :: \(O(V+E)\)
+06_grafos/topo_sort.py	Orden Topologico (Kahn) :: \(O(V+E)\)
+06_grafos/dijkstra.py	Algoritmo de Dijkstra :: \(O((V+E) \log V)\)
+06_grafos/componentes_conexas.py	Componentes Conexas (usando DFS) :: \(O(V+E)\)
+06_grafos/flood_fill.py	Flood Fill en Grilla (BFS) :: \(O(n \cdot m)\) sobre una grilla de \(n \times m\)
+06_grafos/ciclo_dirigido.py	Deteccion de ciclo en grafos dirigidos :: \(O(V+E)\)
+06_grafos/ciclo_nodirigido.py	Deteccion de ciclo en grafos no dirigidos :: \(O(V+E)\)
+06_grafos/scc_kosaraju.py	Componentes Fuertemente Conectadas (Kosaraju) :: \(O(V+E)\)
+06_grafos/articulaciones_y_puentes.py	Puntos de articulacion y puentes (Tarjan) :: \(O(V+E)\)
 
 [Flujos y Emparejamientos]
-07_flujos/dinic.py	Dinic (Maximo Flujo, mas rapido que Edmonds-Karp)
-07_flujos/hopcroft_karp.py	Matching bipartito (Hopcroft-Karp)
-07_flujos/hungarian.py	Asignacion de tareas (Hungarian, O(n^3))
+07_flujos/dinic.py	Dinic (Maximo Flujo, mas rapido que Edmonds-Karp) :: \(O(V^2 E)\) en el peor caso; \(O(E\sqrt{V})\) con capacidades unitarias
+07_flujos/hopcroft_karp.py	Matching bipartito (Hopcroft-Karp) :: \(O(E\sqrt{V})\)
+07_flujos/hungarian.py	Asignacion de tareas (Hungarian, O(n^3)) :: \(O(n^3)\)
 
 [Estructura Disjunta (DSU / Union-Find)]
-08_dsu/dsu.py	~class DSU
-08_dsu/dsu_rollback.py	DSU con Rollback (deshacer uniones)
-08_dsu/dsu_pesado.py	DSU con Pesos (Potenciado / Weighted DSU)
+08_dsu/dsu.py	~class DSU :: \(O(\alpha(n))\) amortizado por operación (casi constante)
+08_dsu/dsu_rollback.py	DSU con Rollback (deshacer uniones) :: \(O(\log n)\) por \texttt{find}/\texttt{union}; \texttt{rollback} \(O(1)\)
+08_dsu/dsu_pesado.py	DSU con Pesos (Potenciado / Weighted DSU) :: \(O(\alpha(n))\) amortizado por operación
 
 [Usos de DSU]
-09_usos_dsu/kruskal.py	Arbol de Expansion Minima (MST) - Kruskal
-09_usos_dsu/tiene_ciclo.py	Deteccion de ciclos en grafos no dirigidos
-09_usos_dsu/contar_componentes_conexas.py	Conteo de Componentes Conexas
+09_usos_dsu/kruskal.py	Arbol de Expansion Minima (MST) - Kruskal :: \(O(E \log E)\)
+09_usos_dsu/tiene_ciclo.py	Deteccion de ciclos en grafos no dirigidos :: \(O(V + E\,\alpha(V))\)
+09_usos_dsu/contar_componentes_conexas.py	Conteo de Componentes Conexas :: \(O(V + E\,\alpha(V))\)
 
 [Programacion Dinamica y Subproblemas Optimos]
-10_dp/max_indep_set.py	Maximo Conjunto Independiente en Listas
-10_dp/cortar_cable.py	Corte de Cable (Rod Cutting)
-10_dp/kadane.py	Algoritmo de Kadane - Maxima Suma de Subarreglo
-10_dp/knapsack.py	Knapsack Booleano (0-1)
-10_dp/fib_memo.py	Backtracking + Programacion Dinamica
-10_dp/contar_combinaciones.py	Numero de Combinaciones para Sumar N con Dados
-10_dp/contar_subs_alternantes.py	Conteo de Subsecuencias Alternantes
-10_dp/contar_monedas.py	Cambio de Monedas con Programacion Dinamica
-10_dp/lcs.py	Mayor Subsecuencia Comun (LCS)
-10_dp/edit_distance.py	Distancia de Edicion (Wagner-Fischer)
-10_dp/floyd_warshall.py	Caminos Mas Cortos - Floyd-Warshall
-10_dp/wildcard_matching.py	Coincidencia de Patron con Comodines (Wildcard Matching)
-10_dp/matrix_chain_order.py	Multiplicacion en Cadena de Matrices
-10_dp/optimal_bst.py	Arbol Binario de Busqueda Optimo (Optimal BST)
-10_dp/bellman_ford.py	Caminos con Pesos Negativos - Bellman-Ford
-10_dp/frog.py	Frog (AtCoder DP A)
-10_dp/grid_paths.py	Caminos en grilla (DP con obstaculos)
+10_dp/max_indep_set.py	Maximo Conjunto Independiente en Listas :: \(O(n)\)
+10_dp/cortar_cable.py	Corte de Cable (Rod Cutting) :: \(O(n^2)\)
+10_dp/kadane.py	Algoritmo de Kadane - Maxima Suma de Subarreglo :: \(O(n)\)
+10_dp/knapsack.py	Knapsack Booleano (0-1) :: \(O(n \cdot W)\), con \(W\) = capacidad
+10_dp/fib_memo.py	Backtracking + Programacion Dinamica :: \(O(n)\)
+10_dp/contar_combinaciones.py	Numero de Combinaciones para Sumar N con Dados :: \(O(n \cdot c)\), con \(c\) = cantidad de caras
+10_dp/contar_subs_alternantes.py	Conteo de Subsecuencias Alternantes :: \(O(n)\)
+10_dp/contar_monedas.py	Cambio de Monedas con Programacion Dinamica :: \(O(n \cdot m)\), con \(m\) = cantidad de monedas
+10_dp/lcs.py	Mayor Subsecuencia Comun (LCS) :: \(O(n \cdot m)\)
+10_dp/edit_distance.py	Distancia de Edicion (Wagner-Fischer) :: \(O(n \cdot m)\)
+10_dp/floyd_warshall.py	Caminos Mas Cortos - Floyd-Warshall :: \(O(n^3)\)
+10_dp/wildcard_matching.py	Coincidencia de Patron con Comodines (Wildcard Matching) :: \(O(n \cdot m)\)
+10_dp/matrix_chain_order.py	Multiplicacion en Cadena de Matrices :: \(O(n^3)\)
+10_dp/optimal_bst.py	Arbol Binario de Busqueda Optimo (Optimal BST) :: \(O(n^3)\)
+10_dp/bellman_ford.py	Caminos con Pesos Negativos - Bellman-Ford :: \(O(V E)\)
+10_dp/frog.py	Frog (AtCoder DP A) :: \(O(n)\)
+10_dp/grid_paths.py	Caminos en grilla (DP con obstaculos) :: \(O(n \cdot m)\)
 
 [Divide y Venceras]
-11_divide_venceras/merge_sort.py	Merge Sort (Ordenamiento por mezcla)
-11_divide_venceras/quicksort.py	QuickSort
-11_divide_venceras/strassen.py	Multiplicacion Matricial de Strassen
-11_divide_venceras/karatsuba.py	Multiplicacion de Enteros - Karatsuba
-11_divide_venceras/potenciacion_rapida.py	Potenciacion Recursiva y Fibonacci Matricial
-11_divide_venceras/fibonacci_matricial.py	~mult(), matrix_pow(), fibonacci()
+11_divide_venceras/merge_sort.py	Merge Sort (Ordenamiento por mezcla) :: \(O(n \log n)\)
+11_divide_venceras/quicksort.py	QuickSort :: promedio \(O(n \log n)\), peor caso \(O(n^2)\)
+11_divide_venceras/strassen.py	Multiplicacion Matricial de Strassen :: \(O(n^{\log_2 7}) \approx O(n^{2.81})\)
+11_divide_venceras/karatsuba.py	Multiplicacion de Enteros - Karatsuba :: \(O(n^{\log_2 3}) \approx O(n^{1.58})\)
+11_divide_venceras/potenciacion_rapida.py	Potenciacion Recursiva y Fibonacci Matricial :: \(O(\log n)\)
+11_divide_venceras/fibonacci_matricial.py	~mult(), matrix_pow(), fibonacci() :: \(O(\log n)\)
 11_divide_venceras/metodo_maestro.tex	Metodo Maestro
-11_divide_venceras/merge_count.py	Cantidad de Inversiones en un Arreglo
-11_divide_venceras/quickselect.py	Estadistico de Orden k (QuickSelect)
-11_divide_venceras/closest_pair.py	Pares mas cercanos (Closest Pair of Points)
-11_divide_venceras/convex_hull.py	Convex Hull (Monotone Chain)
+11_divide_venceras/merge_count.py	Cantidad de Inversiones en un Arreglo :: \(O(n \log n)\)
+11_divide_venceras/quickselect.py	Estadistico de Orden k (QuickSelect) :: \(O(n)\) promedio, \(O(n^2)\) peor caso
+11_divide_venceras/closest_pair.py	Pares mas cercanos (Closest Pair of Points) :: \(O(n \log^2 n)\)
+11_divide_venceras/convex_hull.py	Convex Hull (Monotone Chain) :: \(O(n \log n)\)
 
 [Arbol de Segmentos (Segment Tree)]
-12_segment_tree/segment_tree_basico.py	Segment Tree basico (suma en rango)
-12_segment_tree/segment_tree_lazy.py	Segment Tree con lazy (suma en rango, range_add y range_set)
+12_segment_tree/segment_tree_basico.py	Segment Tree basico (suma en rango) :: construir \(O(n)\); consulta y actualización \(O(\log n)\)
+12_segment_tree/segment_tree_lazy.py	Segment Tree con lazy (suma en rango, range_add y range_set) :: construir \(O(n)\); consulta y actualización de rango \(O(\log n)\)
 
 [Algoritmos de Strings]
 13_strings/intro.tex	-
-13_strings/trie.py	Trie (Arbol de Prefijos)
-13_strings/aho_corasick.py	Aho-Corasick (busqueda de multiples patrones a la vez)
-13_strings/kmp.py	KMP (Knuth-Morris-Pratt) - Busqueda de patrones
-13_strings/hashing.py	Hashing de cadenas (Rabin-Karp / Rolling Hash)
-13_strings/manacher.py	Manacher - Palindromo mas largo
+13_strings/trie.py	Trie (Arbol de Prefijos) :: \(O(L)\) por operación, con \(L\) = largo de la palabra
+13_strings/aho_corasick.py	Aho-Corasick (busqueda de multiples patrones a la vez) :: \(O(\sum |p_i| + |t| + \text{ocurrencias})\)
+13_strings/kmp.py	KMP (Knuth-Morris-Pratt) - Busqueda de patrones :: \(O(|s| + |p|)\)
+13_strings/hashing.py	Hashing de cadenas (Rabin-Karp / Rolling Hash) :: preprocesar \(O(n)\); comparar substrings \(O(1)\)
+13_strings/manacher.py	Manacher - Palindromo mas largo :: \(O(n)\)
 
 [Estructuras y Tecnicas Adicionales]
-14_estructuras_adicionales/ordered_set_fenwick.py	Ordered Set (estadistico de orden) con Fenwick + compresion
-14_estructuras_adicionales/prefix_sums.py	Prefix sums 1D / 2D / 3D
-14_estructuras_adicionales/sparse_table.py	RMQ estatico (minimo en rango) con Sparse Table
+14_estructuras_adicionales/ordered_set_fenwick.py	Ordered Set (estadistico de orden) con Fenwick + compresion :: \(O(\log n)\) por operación
+14_estructuras_adicionales/prefix_sums.py	Prefix sums 1D / 2D / 3D :: preprocesar \(O(n)\) (o \(O(nm)\), \(O(XYZ)\)); consulta \(O(1)\)
+14_estructuras_adicionales/sparse_table.py	RMQ estatico (minimo en rango) con Sparse Table :: preprocesar \(O(n \log n)\); consulta \(O(1)\)
 
 [Two Pointers (Punteros Dobles / Ventana Deslizante)]
 15_two_pointers/intro.tex	-
-15_two_pointers/ventana_deslizante.py	Ventana deslizante (ambos punteros avanzan en la misma direccion)
-15_two_pointers/punteros_opuestos.py	Punteros opuestos (uno empieza al inicio, otro al final, y se acercan)
+15_two_pointers/ventana_deslizante.py	Ventana deslizante (ambos punteros avanzan en la misma direccion) :: \(O(n)\)
+15_two_pointers/punteros_opuestos.py	Punteros opuestos (uno empieza al inicio, otro al final, y se acercan) :: \(O(n)\) (el arreglo ya debe estar ordenado)
 
 [Manejo de Bits]
 16_bits/operadores_tabla.tex	Operadores y trucos basicos
-16_bits/trucos_basicos.py	~es_potencia_de_2(), contar_bits()
-16_bits/xor_propiedades.py	Propiedades de XOR y Prefix XOR
-16_bits/trie_xor.py	Trie binario de bits - maximo XOR entre pares
-16_bits/submascaras.py	Iterar sobre todas las submascaras de una mascara
+16_bits/trucos_basicos.py	~obtener/encender/apagar/alternar_bit(), bit mas bajo, es_potencia_de_2(), contar_bits() :: \(O(1)\) por operación
+16_bits/xor_propiedades.py	Aplicaciones de XOR: elemento unico y Prefix XOR :: preprocesar \(O(n)\); XOR de un rango \(O(1)\)
+16_bits/trie_xor.py	Trie binario de bits - maximo XOR entre pares :: \(O(n \cdot B)\), con \(B\) = cantidad de bits
+16_bits/submascaras.py	Iterar sobre todas las submascaras de una mascara :: \(O(2^k)\) por máscara con \(k\) bits; \(O(3^n)\) sobre todas las máscaras
 
 [LCA (Ancestro Comun mas Bajo)]
 17_lca/intro.tex	-
-17_lca/lca_binary_lifting.py	LCA con Binary Lifting
-17_lca/lca_binary_lifting_peso.py	Extender Binary Lifting con informacion extra en el camino
-17_lca/lca_euler_tour.py	LCA con Euler Tour + Sparse Table
+17_lca/lca_binary_lifting.py	LCA con Binary Lifting :: preprocesar \(O(n \log n)\); consulta \(O(\log n)\)
+17_lca/lca_binary_lifting_peso.py	Extender Binary Lifting con informacion extra en el camino :: preprocesar \(O(n \log n)\); consulta \(O(\log n)\)
+17_lca/lca_euler_tour.py	LCA con Euler Tour + Sparse Table :: preprocesar \(O(n \log n)\); consulta \(O(1)\)
 
 [Busqueda Binaria y Terciaria]
-18_busqueda_binaria/binary_search.py	Busqueda Binaria
-18_busqueda_binaria/ternary_search.py	Busqueda Terciaria
+18_busqueda_binaria/binary_search.py	Busqueda Binaria :: \(O(\log n)\)
+18_busqueda_binaria/ternary_search.py	Busqueda Terciaria :: \(O(\log((r-l)/\varepsilon))\)
 
 [Glosario de Terminos]
 19_glosario/subarreglo_subsecuencia_subconjunto.tex	Subarreglo, Subsecuencia y Subconjunto
