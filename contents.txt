@@ -39,6 +39,20 @@
 01_tips/recomendaciones.tex	Recomendaciones generales
 01_tips/checklist_errores.tex	Checklist: que revisar ante WA, TLE, RTE y MLE
 
+[ICPC: warm-up y estrategia de equipo]
+24_icpc/warmup_checklist.tex	Checklist del warm-up
+24_icpc/diagnostico.py	Diagnostico del entorno (correr en el warm-up) :: \(O(10^7)\) operaciones simples; mide la velocidad del intérprete
+24_icpc/plantilla_solucion.py	Plantilla de solucion: entrada rapida, varios casos e interactivos
+24_icpc/hilo_pila_grande.py	Recursion muy profunda: correr en un hilo con pila grande
+24_icpc/stress_test.py	Prueba de estres: buscar un contraejemplo contra una fuerza bruta
+24_icpc/estrategia_equipo.tex	Estrategia durante la competencia
+
+[Libreria Estandar de Python]
+23_libreria/busqueda_bisect.py	bisect: lower_bound, upper_bound y conteo en rangos :: \(O(\log n)\) por consulta (insertar ordenado \(O(n)\))
+23_libreria/math_util.py	math: isqrt, comb, perm, prod, gcd/lcm y division con techo :: \(O(1)\) por operación (con enteros grandes depende del tamaño)
+23_libreria/itertools_util.py	itertools: accumulate, groupby, product, combinations y chain :: \(O(n)\) para recorrer; generar todas las secuencias es exponencial
+23_libreria/collections_util.py	Counter, heapq (nlargest/nsmallest) y ordenar con key o comparador :: Counter \(O(n)\); nlargest \(O(n \log k)\); sorted \(O(n \log n)\)
+
 [Formulas Matematicas]
 02_matematicas/sumas_sucesiones.tex	Sumas y sucesiones clasicas
 02_matematicas/fibonacci_binet.tex	Fibonacci (formula de Binet)
@@ -85,7 +99,17 @@
 04_busqueda_exhaustiva/cuadrados_magicos.py	Cuadrados Magicos :: \(O(n^2)\)
 04_busqueda_exhaustiva/es_bipartito.py	Particion y Coloreado de Grafos :: \(O(V+E)\)
 04_busqueda_exhaustiva/tsp_branch_and_bound.py	Ramificacion y Poda (Branch and Bound) :: peor caso \(O(n!)\); la poda lo reduce en la práctica
+04_busqueda_exhaustiva/held_karp.py	TSP con DP sobre bitmask (Held-Karp) :: \(O(n^2\, 2^n)\) tiempo, \(O(n\, 2^n)\) memoria
 04_busqueda_exhaustiva/generar_subconjuntos.py	Generacion de Subconjuntos :: \(O(2^n \cdot n)\)
+
+[Backtracking]
+21_backtracking/plantilla_backtracking.py	Plantilla de backtracking: permutaciones, combinaciones y parentesis :: permutaciones \(O(n \cdot n!)\); combinaciones \(O(k\binom{n}{k})\); parentesis \(O(n\,C_n)\)
+21_backtracking/n_reinas.py	N-Reinas :: peor caso \(O(n!)\); la poda lo reduce mucho en la práctica
+21_backtracking/subset_sum_poda.py	Subconjunto con suma objetivo (con poda) :: peor caso \(O(2^n)\); la poda lo reduce
+21_backtracking/coloreo_grafo.py	Coloreo de grafo con m colores :: peor caso \(O(m^V)\)
+21_backtracking/word_search.py	Buscar una palabra en una matriz :: \(O(n \cdot m \cdot 3^L)\), con \(L\) = largo de la palabra
+21_backtracking/sudoku.py	Sudoku :: peor caso exponencial; rápido en la práctica
+21_backtracking/hanoi_josefo.py	Torres de Hanoi y problema de Josefo :: Hanoi \(O(2^n)\) movimientos; Josefo \(O(n)\)
 
 [Algoritmos Voraces]
 05_voraces/cambio_greedy.py	Cambio de Monedas (Greedy)
@@ -99,6 +123,7 @@
 05_voraces/edmonds_karp.py	Algoritmo de Edmonds-Karp (Maximo Flujo) :: \(O(V E^2)\)
 
 [Recorridos en Grafos]
+06_grafos/nota_recursion.tex	-
 06_grafos/bfs.py	Busqueda en Anchura (BFS) :: \(O(V+E)\)
 06_grafos/dfs.py	Busqueda en Profundidad (DFS) :: \(O(V+E)\)
 06_grafos/topo_sort.py	Orden Topologico (Kahn) :: \(O(V+E)\)
@@ -109,6 +134,7 @@
 06_grafos/ciclo_nodirigido.py	Deteccion de ciclo en grafos no dirigidos :: \(O(V+E)\)
 06_grafos/scc_kosaraju.py	Componentes Fuertemente Conectadas (Kosaraju) :: \(O(V+E)\)
 06_grafos/articulaciones_y_puentes.py	Puntos de articulacion y puentes (Tarjan) :: \(O(V+E)\)
+06_grafos/hierholzer.py	Circuito o camino euleriano (Hierholzer) :: \(O(V+E)\)
 
 [Flujos y Emparejamientos]
 07_flujos/dinic.py	Dinic (Maximo Flujo, mas rapido que Edmonds-Karp) :: \(O(V^2 E)\) en el peor caso; \(O(E\sqrt{V})\) con capacidades unitarias
@@ -161,6 +187,9 @@
 12_segment_tree/segment_tree_basico.py	Segment Tree basico (suma en rango) :: construir \(O(n)\); consulta y actualización \(O(\log n)\)
 12_segment_tree/segment_tree_lazy.py	Segment Tree con lazy (suma en rango, range_add y range_set) :: construir \(O(n)\); consulta y actualización de rango \(O(\log n)\)
 
+[Arboles: DP y recorridos]
+22_arboles/arboles_dp.py	Informacion de un arbol en un DFS: subarbol, altura, diametro y tin/tout :: \(O(n)\)
+
 [Algoritmos de Strings]
 13_strings/intro.tex	-
 13_strings/trie.py	Trie (Arbol de Prefijos) :: \(O(L)\) por operación, con \(L\) = largo de la palabra
@@ -198,6 +227,8 @@
 
 [Glosario de Terminos]
 19_glosario/subarreglo_subsecuencia_subconjunto.tex	Subarreglo, Subsecuencia y Subconjunto
+19_glosario/vocabulario_enunciados.tex	Vocabulario frecuente en enunciados (ingles - espanol)
+19_glosario/terminos_grafos.tex	Terminos de grafos (ingles - espanol)
 19_glosario/otros_terminos.tex	Otros terminos frecuentes
 
 [Fin]

@@ -1,0 +1,28 @@
+El \textit{warm-up} (calentamiento) sirve para descubrir problemas del entorno cuando todavía no cuestan penalización. Lista de verificación para ese tiempo:
+
+\textbf{Intérprete y velocidad.}
+\begin{props}
+  \item Averiguar \textbf{qué intérprete usa el juez}: CPython o PyPy, y qué versión. Cambia mucho la velocidad y qué funciones existen (\texttt{math.lcm} desde 3.9; \texttt{int.bit\_count}, \texttt{itertools.pairwise} y el parámetro \texttt{key} de \texttt{bisect} desde 3.10; \texttt{sys.set\_int\_max\_str\_digits} desde 3.11).
+  \item Correr \texttt{diagnostico()} (código más abajo) en el computador del equipo: imprime la implementación, la versión y cuánto tarda un bucle de \(10^7\) iteraciones, y comprueba que la recursión profunda y los enteros grandes funcionan. Si la recursión de \(10^5\) niveles cierra el programa, usar el hilo con pila grande.
+\end{props}
+
+\textbf{Flujo de trabajo en el computador.}
+\begin{props}
+  \item Dejar lista la \textbf{plantilla} (entrada rápida, varios casos de prueba) en un archivo para copiarla al empezar cada problema.
+  \item Practicar cómo se ejecuta con entrada: \texttt{python sol.py < in.txt}. Tener a mano un archivo \texttt{in.txt} para pegar los ejemplos del enunciado.
+  \item Revisar que el editor no estorbe (sangría con espacios, autocompletado, atajos para ejecutar).
+\end{props}
+
+\textbf{Probar el juez.}
+\begin{props}
+  \item \textbf{Enviar una solución de prueba} (el problema de calentamiento o uno trivial) para confirmar: lenguaje seleccionado, nombre de archivo si el sistema lo exige, lectura desde la entrada estándar y formato exacto de la salida.
+  \item Ver cómo se muestran los veredictos y cómo se piden aclaraciones (\textit{clarifications}) al jurado.
+  \item Probar el procedimiento de impresión de código, si el concurso lo ofrece: sirve para revisar errores en papel mientras otro integrante usa el computador.
+  \item \textbf{Problemas interactivos:} el programa conversa con el juez: imprime una consulta, el juez responde y recién entonces se decide la siguiente. Cada consulta debe enviarse de inmediato:\\ \texttt{print(x, flush=True)}\\ El \texttt{input()} original vacía la salida solo, pero \texttt{readline} (el que usa la plantilla) no: sin \textit{flush} el programa y el juez se quedan esperándose.
+\end{props}
+
+\textbf{Equipo.}
+\begin{props}
+  \item Acordar de antemano los turnos para usar el computador y quién lee qué problemas al empezar.
+  \item Confirmar que el notebook impreso está ordenado y que todos saben buscar en el índice.
+\end{props}

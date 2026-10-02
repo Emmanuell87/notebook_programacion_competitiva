@@ -1,0 +1,52 @@
+Expresiones frecuentes en enunciados en inglés y su significado.
+
+\textbf{Condiciones y cantidades.}
+\begin{props}
+  \item \textbf{at most / at least / exactly \(k\)}: \(\le k\) / \(\ge k\) / igual a \(k\).
+  \item \textbf{strictly increasing / non-decreasing}: estrictamente creciente (\(a_i < a_{i+1}\)) / no decreciente, es decir, creciente permitiendo repetidos (\(a_i \le a_{i+1}\)). Lo mismo con \textit{decreasing} / \textit{non-increasing}.
+  \item \textbf{distinct / pairwise distinct}: todos diferentes entre sí.
+  \item \textbf{inclusive / exclusive}: el extremo se incluye / no se incluye.
+  \item \textbf{at most once / at least once}: como máximo una vez / al menos una vez.
+  \item \textbf{the sum of \(n\) over all test cases does not exceed \dots}: la suma de los tamaños de todos los casos de prueba está acotada: sirve para saber si \(O(n)\) por caso alcanza, aunque haya muchos casos.
+  \item \textbf{it is guaranteed that \dots}: garantía sobre la entrada: no hace falta validar esa condición.
+\end{props}
+
+\textbf{Qué hay que producir.}
+\begin{props}
+  \item \textbf{minimize / maximize}: encontrar el menor / mayor valor posible.
+  \item \textbf{find the number of ways / count the number of \dots}: contar; a menudo ``modulo \(10^9+7\)'' o ``\(998244353\)''.
+  \item \textbf{print the answer modulo \(m\)}: imprimir el resultado reducido módulo \(m\).
+  \item \textbf{print any / if there are multiple answers, print any}: vale cualquier solución válida (el verificador la comprueba).
+  \item \textbf{print \(-1\) if it is impossible / if no such \dots exists}: se debe detectar el caso sin solución.
+  \item \textbf{lexicographically smallest}: la menor en orden de diccionario: se compara carácter a carácter (o elemento a elemento) desde el inicio.
+  \item \textbf{query}: una consulta (pregunta) sobre la estructura; a veces con actualizaciones entre consultas.
+  \item \textbf{test case}: cada instancia independiente de la entrada: hay que reiniciar las estructuras entre casos.
+\end{props}
+
+\textbf{Estructuras y secuencias.}
+\begin{props}
+  \item \textbf{array / sequence}: arreglo / secuencia de elementos.
+  \item \textbf{subarray / substring}: contiguo. \textbf{Subsequence}: puede saltar elementos pero conserva el orden. \textbf{Subset}: sin orden.
+  \item \textbf{contiguous / consecutive / adjacent}: seguidos, sin saltos / uno detrás de otro / vecinos.
+  \item \textbf{segment / interval / range \([l, r]\)}: tramo del arreglo o de la recta. Verificar si es cerrado, abierto o semiabierto.
+  \item \textbf{permutation of \(1..n\)}: cada número de 1 a \(n\) aparece exactamente una vez.
+  \item \textbf{the \(i\)-th element / 1-indexed}: el elemento en la posición \(i\) contando desde 1: en Python usar \texttt{a[i-1]}.
+  \item \textbf{pair \((i, j)\) with \(i < j\)}: cada par no ordenado se cuenta una sola vez.
+  \item \textbf{prefix / suffix}: los primeros / los últimos elementos.
+  \item \textbf{swap}: intercambiar dos elementos. \textbf{Cyclic shift / rotation}: mover elementos de un extremo al otro.
+  \item \textbf{palindrome}: se lee igual al derecho y al revés.
+  \item \textbf{binary string}: cadena formada solo por \texttt{0} y \texttt{1}.
+  \item \textbf{lexicographical order}: orden de diccionario (ver arriba).
+\end{props}
+
+\textbf{Matemáticas.}
+\begin{props}
+  \item \textbf{divisor / multiple}: \(d\) divide a \(n\) / \(m\) es múltiplo de \(d\).
+  \item \textbf{prime / composite / coprime}: primo / compuesto / sin factores comunes (\(\gcd = 1\)).
+  \item \textbf{GCD / LCM}: máximo común divisor / mínimo común múltiplo.
+  \item \textbf{floor / ceiling}: \(\lfloor x \rfloor\) (redondeo hacia abajo) / \(\lceil x \rceil\) (hacia arriba).
+  \item \textbf{even / odd, parity}: par / impar, paridad.
+  \item \textbf{absolute value / difference}: valor absoluto / diferencia.
+  \item \textbf{bitwise AND / OR / XOR}: operaciones bit a bit: \texttt{\&}, \texttt{|}, \texttt{\textasciicircum{}}.
+  \item \textbf{modulo / remainder}: módulo / resto de la división.
+\end{props}

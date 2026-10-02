@@ -1,0 +1,80 @@
+Cada término aparece como \textbf{inglés} (\textit{español}), porque los enunciados suelen estar en inglés. \(n\) = número de vértices.
+
+\textbf{Elementos básicos.}
+\begin{props}
+  \item \textbf{Vertex / node} (\textit{vértice, nodo}). Cada punto del grafo.
+  \item \textbf{Edge} (\textit{arista}). Conexión entre dos vértices. En un grafo dirigido también se llama \textbf{arc} (\textit{arco}).
+  \item \textbf{Undirected / directed graph} (\textit{grafo no dirigido / dirigido}). Dirigido (\textit{digraph}): la arista \(u \to v\) es distinta de \(v \to u\). No dirigido: se recorre en ambos sentidos.
+  \item \textbf{Weighted / unweighted} (\textit{ponderado / no ponderado}). Ponderado: cada arista tiene un peso o costo (formato típico \texttt{(vecino, peso)}). No ponderado: todas las aristas ``cuestan'' lo mismo.
+  \item \textbf{Adjacent / neighbors} (\textit{adyacentes / vecinos}). Dos vértices unidos por una arista.
+  \item \textbf{Degree} (\textit{grado}). Cantidad de aristas de un vértice. En dirigidos: \textbf{in-degree} (\textit{grado de entrada}) y \textbf{out-degree} (\textit{grado de salida}).
+  \item \textbf{Self-loop} (\textit{lazo, bucle}). Arista de un vértice a sí mismo.
+  \item \textbf{Multiple / parallel edges} (\textit{aristas múltiples o paralelas}). Más de una arista entre el mismo par de vértices. Un grafo así es un \textbf{multigraph}.
+  \item \textbf{Simple graph} (\textit{grafo simple}). Sin lazos ni aristas paralelas. Si el enunciado no dice lo contrario, a veces se asume simple; conviene verificarlo.
+  \item \textbf{Adjacency list / matrix / edge list} (\textit{lista / matriz de adyacencia / lista de aristas}). Formas de representar el grafo.
+  \item \textbf{Sparse / dense} (\textit{ralo / denso}). Pocas aristas (\(E \approx n\)) o muchas (\(E \approx n^2\)).
+\end{props}
+
+\textbf{Caminos y ciclos.}
+\begin{props}
+  \item \textbf{Walk} (\textit{recorrido}). Secuencia de vértices consecutivos adyacentes; puede repetir vértices y aristas.
+  \item \textbf{Trail} (\textit{camino sin aristas repetidas}). Un walk que no repite aristas (puede repetir vértices).
+  \item \textbf{Path} (\textit{camino}). Normalmente, un camino \textbf{simple}: no repite vértices. En algunos enunciados ``path'' permite repeticiones; hay que leer la definición.
+  \item \textbf{Cycle} (\textit{ciclo}). Camino que empieza y termina en el mismo vértice sin repetir otros vértices. \textbf{Acyclic} (\textit{acíclico}): sin ciclos.
+  \item \textbf{Shortest path / distance} (\textit{camino más corto / distancia}). Camino de menor número de aristas (no ponderado) o de menor peso total (ponderado).
+  \item \textbf{Eulerian path / circuit} (\textit{camino / circuito euleriano}). Usa cada \textbf{arista} exactamente una vez (el circuito vuelve al inicio).
+  \item \textbf{Hamiltonian path / cycle} (\textit{camino / ciclo hamiltoniano}). Visita cada \textbf{vértice} exactamente una vez. Es NP-completo; no confundir con euleriano.
+\end{props}
+
+\textbf{Conectividad.}
+\begin{props}
+  \item \textbf{Connected graph} (\textit{grafo conexo}). Existe un camino entre cualquier par de vértices.
+  \item \textbf{Connected component} (\textit{componente conexa}). Subconjunto maximal de vértices mutuamente alcanzables.
+  \item \textbf{Strongly connected (SCC)} (\textit{fuertemente conexo}). En un dirigido, de cualquier vértice se llega a cualquier otro \textbf{siguiendo el sentido} de las aristas. \textbf{Weakly connected} (\textit{débilmente conexo}): conexo si se ignoran los sentidos. Contraer cada SCC da el \textbf{condensation graph}, que es un DAG.
+  \item \textbf{Bridge} (\textit{puente}). Arista cuya eliminación aumenta el número de componentes. También \textbf{cut edge}.
+  \item \textbf{Articulation point / cut vertex} (\textit{punto de articulación}). Vértice cuya eliminación aumenta el número de componentes.
+  \item \textbf{Biconnected component} (\textit{componente biconexa}). Subgrafo maximal sin puntos de articulación.
+  \item \textbf{DAG} (\textit{grafo dirigido acíclico}). Admite \textbf{topological order} (\textit{orden topológico}): cada arista va de un vértice anterior a uno posterior.
+\end{props}
+
+\textbf{Tipos de grafos.}
+\begin{props}
+  \item \textbf{Complete graph \(K_n\)} (\textit{grafo completo}). Todo par de vértices es adyacente: \(n(n-1)/2\) aristas.
+  \item \textbf{Bipartite graph} (\textit{grafo bipartito}). Los vértices se dividen en dos conjuntos sin aristas dentro de cada uno (equivale a 2-coloreable, sin ciclos impares). \textbf{Complete bipartite} \(K_{a,b}\): todas las aristas entre los dos conjuntos, \(a \cdot b\) en total.
+  \item \textbf{Regular graph} (\textit{grafo regular}). Todos los vértices tienen el mismo grado \(k\) (\(k\)-regular): tiene \(nk/2\) aristas.
+  \item \textbf{Path / cycle / star graph} (\textit{grafo camino / ciclo / estrella}). Una cadena de vértices; una cadena cerrada; un vértice central unido a todos los demás.
+  \item \textbf{Tournament} (\textit{torneo}). Dirigido donde cada par de vértices tiene exactamente una arista, en uno de los dos sentidos.
+  \item \textbf{Functional graph} (\textit{grafo funcional}). Dirigido donde cada vértice tiene exactamente una arista de salida (``cada nodo apunta a otro''): cada componente tiene un único ciclo con árboles colgando.
+  \item \textbf{Cactus} (\textit{cactus}). Cada arista pertenece a lo sumo a un ciclo simple.
+  \item \textbf{Planar graph} (\textit{grafo planar}). Se dibuja en el plano sin que se crucen las aristas.
+  \item \textbf{Grid graph} (\textit{grafo de grilla}). Los vértices son celdas de una matriz, unidas a sus vecinas de arriba, abajo, izquierda y derecha.
+\end{props}
+
+\textbf{Árboles.}
+\begin{props}
+  \item \textbf{Tree / forest} (\textit{árbol / bosque}). Árbol: conexo y acíclico (\(n-1\) aristas). Bosque: unión de árboles, o sea acíclico.
+  \item \textbf{Rooted tree, root, parent, child} (\textit{árbol con raíz, raíz, padre, hijo}). Se fija una raíz y cada vértice, salvo ella, tiene un padre.
+  \item \textbf{Leaf} (\textit{hoja}). Vértice sin hijos (en un árbol no dirigido, de grado 1).
+  \item \textbf{Ancestor / descendant / subtree} (\textit{ancestro / descendiente / subárbol}). Los vértices en el camino hacia la raíz; los que quedan debajo; el vértice con todos sus descendientes.
+  \item \textbf{Depth / height} (\textit{profundidad / altura}). Distancia a la raíz; distancia máxima hacia una hoja.
+  \item \textbf{Diameter} (\textit{diámetro}). Mayor distancia entre dos vértices del grafo.
+  \item \textbf{LCA (lowest common ancestor)} (\textit{ancestro común más bajo}). El ancestro compartido más profundo de dos vértices.
+  \item \textbf{Spanning tree / MST} (\textit{árbol de expansión / de expansión mínima}). Subárbol que contiene todos los vértices; el MST minimiza el peso total.
+\end{props}
+
+\textbf{Subestructuras y conjuntos.}
+\begin{props}
+  \item \textbf{Subgraph / induced subgraph} (\textit{subgrafo / subgrafo inducido}). Parte de los vértices y aristas; el inducido conserva \textbf{todas} las aristas entre los vértices elegidos.
+  \item \textbf{Clique} (\textit{clique}). Conjunto de vértices todos adyacentes entre sí.
+  \item \textbf{Independent set} (\textit{conjunto independiente}). Conjunto de vértices sin ningún par adyacente.
+  \item \textbf{Vertex cover} (\textit{cobertura de vértices}). Conjunto de vértices que toca todas las aristas. Un conjunto es independiente \(\iff\) su complemento es una cobertura.
+  \item \textbf{Matching} (\textit{emparejamiento, acoplamiento}). Conjunto de aristas sin vértices en común. \textbf{Perfect matching}: cubre todos los vértices. En grafos bipartitos, el tamaño del matching máximo es igual al de la cobertura mínima (teorema de König).
+  \item \textbf{Coloring / chromatic number} (\textit{coloreo / número cromático}). Asignar colores a vértices sin que dos adyacentes coincidan; el número cromático es la mínima cantidad de colores que alcanza.
+\end{props}
+
+\textbf{Flujos.}
+\begin{props}
+  \item \textbf{Network / source / sink} (\textit{red / fuente / sumidero}). Grafo dirigido con capacidades; el flujo sale de la fuente \(s\) y llega al sumidero \(t\).
+  \item \textbf{Capacity / flow / residual graph} (\textit{capacidad / flujo / grafo residual}). Máximo permitido por arista; cantidad que realmente pasa; capacidad que queda disponible.
+  \item \textbf{Max flow / min cut} (\textit{flujo máximo / corte mínimo}). El valor del flujo máximo es igual a la capacidad del corte mínimo que separa \(s\) de \(t\).
+\end{props}

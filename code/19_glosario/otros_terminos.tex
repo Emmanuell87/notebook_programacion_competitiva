@@ -15,11 +15,5 @@
 
   \item[Multiconjunto (\textit{multiset}).] Como un conjunto, pero permite elementos repetidos (ej. \(\{1,1,2\}\) es un multiconjunto válido, distinto de \(\{1,2\}\)).
 
-  \item[Grafo dirigido / no dirigido.] Dirigido: la arista \(u\to v\) es distinta de \(v\to u\) (puede existir una sin la otra). No dirigido: si existe la arista entre \(u\) y \(v\), se puede recorrer en ambos sentidos.
-
-  \item[Grafo ponderado / no ponderado.] Ponderado: cada arista tiene un peso/costo asociado (formato típico \texttt{(vecino, peso)}). No ponderado: las aristas no tienen costo, todas "cuestan" lo mismo (formato típico: solo \texttt{vecino}).
-
-  \item[DAG (grafo acíclico dirigido).] Un grafo dirigido sin ciclos. Es la condición necesaria para que exista un orden topológico y para varias técnicas de DP sobre grafos.
-
   \item[Invariante.] Una propiedad que se mantiene cierta durante toda la ejecución de un algoritmo, sin importar en qué paso esté. Sirve para razonar si un algoritmo es correcto (ej. en DSU, "cada nodo siempre puede llegar a su raíz siguiendo \texttt{parent}" es un invariante).
 \end{description}

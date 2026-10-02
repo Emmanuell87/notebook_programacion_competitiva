@@ -1,0 +1,5 @@
+\textbf{Recordatorio:} los recorridos basados en DFS (DFS, componentes, detección de ciclos, Kosaraju, articulaciones y puentes, bipartito) son \textbf{recursivos}. Con muchos nodos (del orden de \(10^4\) o más), agregar al inicio del programa:
+\begin{center}
+\texttt{import sys; sys.setrecursionlimit(10**6)}
+\end{center}
+Si el grafo puede ser una cadena de \(10^5\) o más nodos, una recursión tan profunda puede cerrar el programa sin lanzar excepción; en ese caso conviene pasar a una pila explícita (ver \textit{Recursion profunda} en Tips).
