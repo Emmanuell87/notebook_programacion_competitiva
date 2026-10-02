@@ -240,11 +240,18 @@ def construir_contenido_tex(bloques):
 
 
 def main():
-    if not CONTENTS_FILE.exists():
-        print(f"ERROR: no se encontro {CONTENTS_FILE}")
+    # Uso: python generate_pdf.py [archivo_contenido] [nombre_salida] [titulo]
+    # Sin argumentos genera notebook.pdf desde contents.txt.
+    contents_file = BASE_DIR / (sys.argv[1] if len(sys.argv) > 1 else "contents.txt")
+    nombre = sys.argv[2] if len(sys.argv) > 2 else "notebook"
+    titulo = sys.argv[3] if len(sys.argv) > 3 else "Notebook de Programación Competitiva"
+    output_tex = BASE_DIR / f"{nombre}.tex"
+
+    if not contents_file.exists():
+        print(f"ERROR: no se encontro {contents_file}")
         sys.exit(1)
 
-    bloques = parsear_contents(CONTENTS_FILE)
+    bloques = parsear_contents(contents_file)
     contenido = construir_contenido_tex(bloques)
 
     plantilla = TEMPLATE_FILE.read_text(encoding="utf-8")
@@ -252,23 +259,25 @@ def main():
         print(f"ERROR: {TEMPLATE_FILE} no tiene el marcador %%CONTENIDO%%")
         sys.exit(1)
 
-    tex_final = plantilla.replace("%%CONTENIDO%%", contenido)
-    OUTPUT_TEX.write_text(tex_final, encoding="utf-8")
-    print(f"Generado: {OUTPUT_TEX}")
+    tex_final = plantilla.replace("%%CONTENIDO%%", contenido).replace("%%TITULO%%", titulo)
+    output_tex.write_text(tex_final, encoding="utf-8")
+    print(f"Generado: {output_tex}")
 
     for intento in (1, 2):
         resultado = subprocess.run(
-            ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", OUTPUT_TEX.name],
+            ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", output_tex.name],
             cwd=BASE_DIR,
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            errors="replace",  # pdflatex puede cortar un caracter UTF-8 al partir lineas
         )
         if resultado.returncode != 0:
             print(f"ERROR compilando (pasada {intento}):")
             print(resultado.stdout[-3000:])
             sys.exit(1)
 
-    print(f"PDF generado correctamente: {BASE_DIR / 'notebook.pdf'}")
+    print(f"PDF generado correctamente: {BASE_DIR / (nombre + '.pdf')}")
 
 
 if __name__ == "__main__":
